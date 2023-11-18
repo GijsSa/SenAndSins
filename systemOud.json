@@ -1,0 +1,26 @@
+{
+  "name": "senandsins",
+  "title": "Sen and Sin",
+  "description": "A simple system for our pal",
+  "version": "0.0.4",
+  "minimumCoreVersion": "0.8.9",
+  "compatibleCoreVersion": "9",
+  "author": "Chosho",
+  "esmodules": ["module/simple.js"],
+  "styles": ["styles/simple.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 10,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
+    "url": "https://github.com/GijsSa/SenAndSins",
+    "manifest": "TODO.json",
+    "download": "TODO.zip"
+}

@@ -1,10 +1,10 @@
 {
-    "id": "SenAndSins",
+    "id": "senandsins",
     "title": "Sen and Sin",
     "description": "A simple system for our pal",
-    "version": "0.0.4",
+    "version": "0.0.1",
     "compatibility": {
-      "minimum": "0.8.9",
+      "minimum": "10",
       "verified": "11",
       "maximum": "11"
     },
@@ -24,18 +24,17 @@
     "packs": [
     ],
   "languages": [
-      {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
-      }
-    ],
-    "socket": false,
-    "gridDistance": 10,
-    "gridUnits": "m",
-    "primaryTokenAttribute": "health",
-    "secondaryTokenAttribute": "power",
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 10,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
     "url": "https://github.com/GijsSa/SenAndSins",
     "manifest": "TODO.json",
     "download": "TODO.zip"
-  }
+}
