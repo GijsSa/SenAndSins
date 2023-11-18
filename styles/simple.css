@@ -199,25 +199,6 @@
 .worldbuilding .group-controls {
   margin: 5px;
 }
-.worldbuilding .attributes .flexrow{
-	display:flex;
-}
-.worldbuilding .attributes .w-100{
-	width:100%;
-}
-.worldbuilding .attributes .w-45p{
-	width:45px;
-}
-.mb-1{
-	margin-bottom: 3px;
-}
-.worldbuilding .attributes .statblock{
-	border: 1px solid black;
-	margin: 10px;
-}
-.text-center{
-	text-align: center;
-}
 .worldbuilding .groups-list {
   list-style: none;
   margin: 0;
