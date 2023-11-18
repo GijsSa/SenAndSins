@@ -9,7 +9,7 @@ import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { createWorldbuildingMacro } from "./macro.js";
+import { createSenAndSinsMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 
 /* -------------------------------------------- */
@@ -33,7 +33,7 @@ Hooks.once("init", async function() {
 
   game.SenAndSins = {
     SimpleActor,
-    createWorldbuildingMacro,
+    createSenAndSinsMacro,
     useEntity: foundry.utils.isNewerVersion("9", game.version ?? game.data.version)
   };
 
@@ -102,7 +102,7 @@ Hooks.once("init", async function() {
 /**
  * Macrobar hook.
  */
-Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot));
+Hooks.on("hotbarDrop", (bar, data, slot) => createSenAndSinsMacro(data, slot));
 
 /**
  * Adds the actor template context menu.
