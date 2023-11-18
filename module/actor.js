@@ -28,7 +28,7 @@ export class SimpleActor extends Actor {
    * @type {boolean}
    */
   get isTemplate() {
-    return !!this.getFlag("SenAndSins", "isTemplate");
+    return !!this.getFlag("worldbuilding", "isTemplate");
   }
 
   /* -------------------------------------------- */
@@ -40,7 +40,7 @@ export class SimpleActor extends Actor {
 
     // Copy the actor's system data
     const data = this.toObject(false).data;
-    const shorthand = game.settings.get("SenAndSins", "macroShorthand");
+    const shorthand = game.settings.get("worldbuilding", "macroShorthand");
     const formulaAttributes = [];
     const itemAttributes = [];
 
