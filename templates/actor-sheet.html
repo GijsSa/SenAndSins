@@ -8,13 +8,11 @@
                 <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
             </h1>
             <div class="resource">
-				<span>HP: </span>
                 <input type="number" name="data.health.value" value="{{systemData.health.value}}"/>
                 <span> / </span>
                 <input type="number" name="data.health.max" value="{{systemData.health.max}}"/>
             </div>
             <div class="resource">
-				<span>EP: </span>
                 <input type="number" name="data.power.value" value="{{systemData.power.value}}"/>
                 <span> / </span>
                 <input type="number" name="data.power.max" value="{{systemData.power.max}}"/>
@@ -24,57 +22,17 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="attributes">General</a>
-        <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="items">Items</a>
+        <a class="item" data-tab="attributes">Attributes</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-			<div class="flexrow">
-				<div class="stats w-45p">
-					<div class="statblock mt-5">
-						<p class="w-100 text-center mb-1">Body</p>
-						<input class="attribute-value" type="text" name="data.body.main" value="{{systemData.body.main}}"
-                        data-dtype="Number" />
-					</div>
-					<div class="statblock">
-						<p class="w-100 text-center mb-1">Mind</p>
-						<input class="attribute-value" type="text" name="data.mind.main" value="{{systemData.mind.main}}"
-                        data-dtype="Number" />
-					</div>
-					<div class="statblock mb-5">
-						<p class="w-100 text-center mb-1">Soul</p>
-						<input class="attribute-value" type="text" name="data.soul.main" value="{{systemData.soul.main}}"
-                        data-dtype="Number" />
-					</div>
-				</div>
-				<div class="mainattributes w-100">
-					<header class="attributes-header flexrow">
-						<span class="attribute-key">{{localize "SIMPLE.AttributeKey"}}</span>
-						<span class="attribute-value">{{localize "SIMPLE.AttributeValue"}}</span>
-						<span class="attribute-label">{{localize "SIMPLE.AttributeLabel"}}</span>
-						<span class="attribute-dtype">{{localize "SIMPLE.AttributeDtype"}}</span>
-						<a class="attribute-control" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
-					</header>
-
-					{{!-- Render the attribute list partial. --}}
-					{{> "systems/senandsins/SnS/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes}}
-
-					{{!-- Render the grouped attributes partial and control. --}}
-					<div class="groups">
-						{{> "systems/senandsins/SnS/parts/sheet-groups.html" attributes=systemData.groupedAttributes groups=systemData.groups dtypes=dtypes}}
-
-						<div class="group-controls flexrow">
-							<input class="group-prefix" type="text" value=""/>
-							<a class="button group-control" data-action="create-group"><i class="fas fa-plus"></i>Add Attribute Group</a>
-						</div>
-					</div>
-				</div>
-            </div>
+        {{!-- Biography Tab --}}
+        <div class="tab description" data-group="primary" data-tab="description">
+            {{editor content=systemData.biography target="data.biography" button=true owner=owner editable=editable rollData=rollData}}
         </div>
 
         {{!-- Owned Items Tab --}}
@@ -130,9 +88,28 @@
             </p>
         </div>
 
-        {{!-- Biography Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
-            {{editor content=systemData.biography target="data.biography" button=true owner=owner editable=editable rollData=rollData}}
+        {{!-- Attributes Tab --}}
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <header class="attributes-header flexrow">
+                <span class="attribute-key">{{localize "SIMPLE.AttributeKey"}}</span>
+                <span class="attribute-value">{{localize "SIMPLE.AttributeValue"}}</span>
+                <span class="attribute-label">{{localize "SIMPLE.AttributeLabel"}}</span>
+                <span class="attribute-dtype">{{localize "SIMPLE.AttributeDtype"}}</span>
+                <a class="attribute-control" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
+            </header>
+
+            {{!-- Render the attribute list partial. --}}
+            {{> "systems/senandsins/templates/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes}}
+
+            {{!-- Render the grouped attributes partial and control. --}}
+            <div class="groups">
+                {{> "systems/senandsins/templates/parts/sheet-groups.html" attributes=systemData.groupedAttributes groups=systemData.groups dtypes=dtypes}}
+
+                <div class="group-controls flexrow">
+                    <input class="group-prefix" type="text" value=""/>
+                    <a class="button group-control" data-action="create-group"><i class="fas fa-plus"></i>Add Attribute Group</a>
+                </div>
+            </div>
         </div>
     </section>
 </form>

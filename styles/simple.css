@@ -1,17 +1,17 @@
-.SenAndSins {
+.senandsins {
   /* Sheet Tabs */
   /* Items List */
   /* Attributes */
 }
-.SenAndSins .window-content {
+.senandsins .window-content {
   height: 100%;
   padding: 5px;
   overflow-y: hidden;
 }
-.SenAndSins form {
+.senandsins form {
   height: 100%;
 }
-.SenAndSins .sheet-header {
+.senandsins .sheet-header {
   flex: 0 0 100px;
   overflow: hidden;
   display: flex;
@@ -20,85 +20,85 @@
   justify-content: flex-start;
   margin-bottom: 10px;
 }
-.SenAndSins .sheet-header .profile-img {
+.senandsins .sheet-header .profile-img {
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
 }
-.SenAndSins .sheet-header .header-fields {
+.senandsins .sheet-header .header-fields {
   flex: 1;
   height: 100px;
 }
-.SenAndSins .sheet-header h1.charname {
+.senandsins .sheet-header h1.charname {
   height: 50px;
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
 }
-.SenAndSins .sheet-header h1.charname input {
+.senandsins .sheet-header h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
 }
-.SenAndSins .resource {
+.senandsins .resource {
   width: 50%;
   height: 40px;
   margin-top: 10px;
   float: left;
   text-align: center;
 }
-.SenAndSins .resource input {
+.senandsins .resource input {
   width: 100px;
   height: 28px;
 }
-.SenAndSins .tabs {
+.senandsins .tabs {
   flex: 0 0 40px;
   border-top: 1px solid #AAA;
   border-bottom: 1px solid #AAA;
 }
-.SenAndSins .tabs .item {
+.senandsins .tabs .item {
   line-height: 40px;
   font-weight: bold;
 }
-.SenAndSins .tabs .item.active {
+.senandsins .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
 }
-.SenAndSins .sheet-body {
+.senandsins .sheet-body {
   overflow: hidden;
 }
-.SenAndSins .sheet-body .tab {
+.senandsins .sheet-body .tab {
   height: 100%;
   overflow-y: auto;
 }
-.SenAndSins .editor,
-.SenAndSins .editor-content {
+.senandsins .editor,
+.senandsins .editor-content {
   height: 100%;
 }
-.SenAndSins .item-list {
+.senandsins .item-list {
   list-style: none;
   margin: 7px 0;
   padding: 0;
   overflow-y: auto;
 }
-.SenAndSins .item-list .item {
+.senandsins .item-list .item {
   min-height: 30px;
   line-height: 24px;
   padding: 3px 0;
   border-bottom: 1px solid #BBB;
   align-items: stretch;
 }
-.SenAndSins .item-list .item img {
+.senandsins .item-list .item img {
   flex: 0 0 24px;
   margin-right: 5px;
 }
-.SenAndSins .item-list .item-name {
+.senandsins .item-list .item-name {
   margin: 0;
 }
-.SenAndSins .item-list .item-controls {
+.senandsins .item-list .item-controls {
   flex: 0 0 36px;
 }
-.SenAndSins .item-list .item-buttons {
+.senandsins .item-list .item-buttons {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -106,23 +106,23 @@
   flex: 2;
   justify-content: flex-start;
 }
-.SenAndSins .item-list .item-button {
+.senandsins .item-list .item-button {
   line-height: 1;
   font-size: 11px;
   flex: none;
   width: auto;
 }
-.SenAndSins .attributes {
+.senandsins .attributes {
   position: relative;
 }
-.SenAndSins .attributes .attribute-control,
-.SenAndSins .attributes .group-control {
+.senandsins .attributes .attribute-control,
+.senandsins .attributes .group-control {
   flex: 0 0 20px;
   text-align: center;
   line-height: 28px;
   border: none;
 }
-.SenAndSins .attributes .attribute-roll {
+.senandsins .attributes .attribute-roll {
   flex: 0 0 20px;
   text-align: center;
   border-bottom: none;
@@ -130,11 +130,11 @@
   align-items: center;
   justify-content: center;
 }
-.SenAndSins .attributes .group-prefix {
+.senandsins .attributes .group-prefix {
   height: 31px;
   margin-right: 10px;
 }
-.SenAndSins .attributes .button {
+.senandsins .attributes .button {
   width: 100%;
   flex: 1;
   margin: 0;
@@ -145,11 +145,11 @@
   line-height: 28px;
   display: block;
 }
-.SenAndSins .attributes .attribute-key {
+.senandsins .attributes .attribute-key {
   background: transparent;
   border: none;
 }
-.SenAndSins .attributes-header {
+.senandsins .attributes-header {
   position: sticky;
   top: 0;
   left: 0;
@@ -162,12 +162,12 @@
   text-align: left;
   font-weight: bold;
 }
-.SenAndSins .attributes-list {
+.senandsins .attributes-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.SenAndSins .attributes-list li > * {
+.senandsins .attributes-list li > * {
   margin: 0 3px;
   height: 28px;
   line-height: 24px;
@@ -176,66 +176,66 @@
   border-radius: 0;
   border-bottom: 1px solid #AAA;
 }
-.SenAndSins .attributes-list .attribute-col label {
+.senandsins .attributes-list .attribute-col label {
   font-size: 10px;
   text-align: center;
   line-height: 1;
 }
-.SenAndSins .attributes-list .attribute-col input {
+.senandsins .attributes-list .attribute-col input {
   font-size: 11px;
   text-align: center;
   line-height: 1;
   height: 50%;
 }
-.SenAndSins .attribute input[type="text"]::placeholder,
-.SenAndSins .group-header input[type="text"]::placeholder {
+.senandsins .attribute input[type="text"]::placeholder,
+.senandsins .group-header input[type="text"]::placeholder {
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
 }
-.SenAndSins .attribute input[type="text"]:focus::placeholder,
-.SenAndSins .group-header input[type="text"]:focus::placeholder {
+.senandsins .attribute input[type="text"]:focus::placeholder,
+.senandsins .group-header input[type="text"]:focus::placeholder {
   opacity: 1;
 }
-.SenAndSins .group-controls {
+.senandsins .group-controls {
   margin: 5px;
 }
-.SenAndSins .attributes .flexrow{
+.senandsins .attributes .flexrow{
 	display:flex;
 }
-.SenAndSins .attributes .w-100{
+.senandsins .attributes .w-100{
 	width:100%;
 }
-.SenAndSins .attributes .w-45p{
+.senandsins .attributes .w-45p{
 	width:45px;
 }
-.SenAndSins .mb-1{
+.senandsins .mb-1{
 	margin-bottom: 3px;
 }
-.SenAndSins .attributes .statblock{
+.senandsins .attributes .statblock{
 	border: 1px solid black;
 	margin: 10px;
 }
-.SenAndSins .text-center{
+.senandsins .text-center{
 	text-align: center;
 }
-.SenAndSins .groups-list {
+.senandsins .groups-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.SenAndSins .group {
+.senandsins .group {
   margin: 5px 0 0;
   padding: 0;
 }
-.SenAndSins .group-header {
+.senandsins .group-header {
   align-items: center;
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid #AAA;
   border-radius: 2px;
   padding: 2px 5px;
 }
-.SenAndSins .group-key,
-.SenAndSins .group-label {
+.senandsins .group-key,
+.senandsins .group-label {
   font-weight: bold;
   border: none;
   border-bottom: 1px solid #AAA;
@@ -243,22 +243,22 @@
   border-radius: 0;
   margin-right: 6px;
 }
-.SenAndSins .group-key {
+.senandsins .group-key {
   opacity: 0.75;
 }
-.SenAndSins .group-label {
+.senandsins .group-label {
   flex: 2;
 }
-.SenAndSins .group-dtype {
+.senandsins .group-dtype {
   height: 24px;
   flex: 0 0 116px;
   margin: 0 5px;
 }
-.SenAndSins.sheet.actor {
+.senandsins.sheet.actor {
   min-width: 560px;
   min-height: 420px;
 }
-.SenAndSins.sheet.item {
+.senandsins.sheet.item {
   min-width: 460px;
   min-height: 400px;
 }
