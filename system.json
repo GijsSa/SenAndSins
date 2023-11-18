@@ -1,0 +1,55 @@
+{
+    "id": "senandsin",
+    "title": "Sen and Sin",
+    "description": "A human-readable description of your system.",
+    "version": "1.0.0",
+    "compatibility": {
+      "minimum": "10",
+      "verified": "11",
+      "maximum": "11"
+    },
+    "authors": [
+      {
+        "name": "Chosho"
+      }
+    ],
+    "scripts": [
+      "scripts/system-script-1.js",
+      "scripts/system-script-2.js"
+    ],
+    "esmodules": [
+      "scripts/system-module-1.mjs"
+    ],
+    "styles": [
+      "styles/system-styles-1.css",
+      "styles/system-styles-2.css"
+    ],
+    "packs": [
+      {
+        "name": "monsters",
+        "label": "My Monsters",
+        "type": "Actor"
+      },
+      {
+        "name": "items",
+        "label": "My Items",
+        "type": "Item"
+      }
+    ],
+  "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+    ],
+    "socket": false,
+    "initiative": "1d20",
+    "gridDistance": 10,
+    "gridUnits": "m",
+    "primaryTokenAttribute": "resources.health",
+    "secondaryTokenAttribute": "resources.power",
+    "url": "https://github.com/GijsSa/SenAndSins",
+    "manifest": "TODO.json",
+    "download": "TODO.zip"
+  }
