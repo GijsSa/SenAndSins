@@ -13,7 +13,15 @@
       "min": 0,
       "max": 5
     },
-    "attributes": {},
+	"body": {
+		"main": 0
+	},
+	"mind": {
+		"main": 0
+	},
+	"soul": {
+		"main": 0
+	},
     "groups": {}
   }
 },
