@@ -20,7 +20,7 @@ import { SimpleToken, SimpleTokenDocument } from "./token.js";
  * Init hook.
  */
 Hooks.once("init", async function() {
-  console.log(`Initializing Simple Worldbuilding System`);
+  console.log(`Initializing SnS System`);
 
   /**
    * Set an initiative formula for the system. This will be updated later.
@@ -31,7 +31,7 @@ Hooks.once("init", async function() {
     decimals: 2
   };
 
-  game.worldbuilding = {
+  game.SenAndSins = {
     SimpleActor,
     createWorldbuildingMacro,
     useEntity: foundry.utils.isNewerVersion("9", game.version ?? game.data.version)
@@ -45,12 +45,12 @@ Hooks.once("init", async function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("worldbuilding", SimpleActorSheet, { makeDefault: true });
+  Actors.registerSheet("SenAndSins", SimpleActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("worldbuilding", SimpleItemSheet, { makeDefault: true });
+  Items.registerSheet("SenAndSins", SimpleItemSheet, { makeDefault: true });
 
   // Register system settings
-  game.settings.register("worldbuilding", "macroShorthand", {
+  game.settings.register("SenAndSins", "macroShorthand", {
     name: "SETTINGS.SimpleMacroShorthandN",
     hint: "SETTINGS.SimpleMacroShorthandL",
     scope: "world",
@@ -60,7 +60,7 @@ Hooks.once("init", async function() {
   });
 
   // Register initiative setting.
-  game.settings.register("worldbuilding", "initFormula", {
+  game.settings.register("SenAndSins", "initFormula", {
     name: "SETTINGS.SimpleInitFormulaN",
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
@@ -71,7 +71,7 @@ Hooks.once("init", async function() {
   });
 
   // Retrieve and assign the initiative formula setting.
-  const initFormula = game.settings.get("worldbuilding", "initFormula");
+  const initFormula = game.settings.get("SenAndSins", "initFormula");
   _simpleUpdateInit(initFormula);
 
   /**
@@ -108,7 +108,7 @@ Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot)
  * Adds the actor template context menu.
  */
 Hooks.on("getActorDirectoryEntryContext", (html, options) => {
-  const idAttr = game.worldbuilding.useEntity ? "entityId" : "documentId";
+  const idAttr = game.SenAndSins.useEntity ? "entityId" : "documentId";
   // Define an actor as a template.
   options.push({
     name: game.i18n.localize("SIMPLE.DefineTemplate"),
@@ -119,7 +119,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const actor = game.actors.get(li.data(idAttr));
-      actor.setFlag("worldbuilding", "isTemplate", true);
+      actor.setFlag("SenAndSins", "isTemplate", true);
     }
   });
 
@@ -133,7 +133,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const actor = game.actors.get(li.data(idAttr));
-      actor.setFlag("worldbuilding", "isTemplate", false);
+      actor.setFlag("SenAndSins", "isTemplate", false);
     }
   });
 });
@@ -142,7 +142,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
  * Adds the item template context menu.
  */
 Hooks.on("getItemDirectoryEntryContext", (html, options) => {
-  const idAttr = game.worldbuilding.useEntity ? "entityId" : "documentId";
+  const idAttr = game.SenAndSins.useEntity ? "entityId" : "documentId";
   // Define an item as a template.
   options.push({
     name: game.i18n.localize("SIMPLE.DefineTemplate"),
@@ -153,7 +153,7 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const item = game.items.get(li.data(idAttr));
-      item.setFlag("worldbuilding", "isTemplate", true);
+      item.setFlag("SenAndSins", "isTemplate", true);
     }
   });
 
@@ -167,7 +167,7 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const item = game.items.get(li.data(idAttr));
-      item.setFlag("worldbuilding", "isTemplate", false);
+      item.setFlag("SenAndSins", "isTemplate", false);
     }
   });
 });

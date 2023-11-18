@@ -10,8 +10,8 @@ export class SimpleActorSheet extends ActorSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["worldbuilding", "sheet", "actor"],
-      template: "systems/worldbuilding/templates/actor-sheet.html",
+      classes: ["SenAndSins", "sheet", "actor"],
+      template: "systems/SenAndSins/SnS/actor-sheet.html",
       width: 600,
       height: 600,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
@@ -26,7 +26,7 @@ export class SimpleActorSheet extends ActorSheet {
   getData() {
     const context = super.getData();
     EntitySheetHelper.getAttributeData(context.data);
-    context.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
+    context.shorthand = !!game.settings.get("SenAndSins", "macroShorthand");
     context.systemData = context.data.data;
     context.dtypes = ATTRIBUTE_TYPES;
     return context;
