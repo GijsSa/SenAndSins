@@ -14,7 +14,7 @@ export class SimpleActorSheet extends ActorSheet {
       template: "systems/senandsins/SnS/actor-sheet.html",
       width: 600,
       height: 600,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
       scrollY: [".biography", ".items", ".attributes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
@@ -111,6 +111,7 @@ export class SimpleActorSheet extends ActorSheet {
   _getSubmitData(updateData) {
     let formData = super._getSubmitData(updateData);
     formData = EntitySheetHelper.updateAttributes(formData, this.object);
+    formData = EntitySheetHelper.updateDefects(formData, this.object);
     formData = EntitySheetHelper.updateGroups(formData, this.object);
     return formData;
   }

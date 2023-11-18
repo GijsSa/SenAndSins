@@ -1,0 +1,15 @@
+<section class="defects-group w-100">
+    <ol class="defects-list">
+        {{#each defects as |defc key|}}
+        <li class="defect flexrow" data-attribute="{{#if defc.group}}{{defc.group}}.{{/if}}{{key}}">
+            <input class="defect-level" type="text" name="data.defects.{{#if defc.group}}{{defc.group}}.{{/if}}{{key}}.level" value="{{defc.level}}" placeholder="{{localize "SIMPLE.DefectLevel"}}"/>
+            <input class="defect-cost" type="number" name="data.defects.{{#if defc.group}}{{defc.group}}.{{/if}}{{key}}.cost" value="{{defc.cost}}" placeholder="{{localize "SIMPLE.DefectCost"}}"/>
+            <input class="defect-flux" type="number" name="data.defects.{{#if defc.group}}{{defc.group}}.{{/if}}{{key}}.flux" value="{{defc.flux}}" placeholder="{{localize "SIMPLE.DefectFlux"}}"/>
+            <input class="defect-name" type="text" name="data.defects.{{#if defc.group}}{{defc.group}}.{{/if}}{{key}}.name" value="{{defc.name}}" placeholder="{{localize "SIMPLE.DefectName"}}"/>
+            <textarea class="defect-desc" rows="5" name="data.defects.{{#if defc.group}}{{defc.group}}.{{/if}}{{key}}.desc" placeholder="{{localize "SIMPLE.DefectDesc"}}">{{defc.desc}}</textarea>
+			<input type="hidden" name="data.defects.{{#if defc.group}}{{defc.group}}.{{/if}}{{key}}.group" value="{{defc.group}}" />
+            <a class="defect-control" data-action="delete"><i class="fas fa-trash"></i></a>
+        </li>
+        {{/each}}
+    </ol>
+</section>

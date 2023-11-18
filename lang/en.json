@@ -29,6 +29,17 @@
   "SIMPLE.AttributeValue": "Value",
   "SIMPLE.AttributeLabel": "Label",
   "SIMPLE.AttributeDtype": "Data Type",
+  
+  "SIMPLE.AttributeLevel": "Lvl",
+  "SIMPLE.AttributeCost": "Cost",
+  "SIMPLE.AttributeFlux": "Flux",
+  "SIMPLE.AttributeName": "Name",
+  
+  "SIMPLE.DefectLevel": "Lvl",
+  "SIMPLE.DefectCost": "Cost",
+  "SIMPLE.DefectFlux": "Flux",
+  "SIMPLE.DefectName": "Name",
+  "SIMPLE.DefectDesc": "Description",
 
   "SIMPLE.DeleteGroup": "Delete group?",
   "SIMPLE.DeleteGroupContent": "Do you wish to delete this group? This will delete the following group and all attributes included in it: ",

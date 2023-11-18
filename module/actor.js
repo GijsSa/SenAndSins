@@ -11,7 +11,9 @@ export class SimpleActor extends Actor {
     super.prepareDerivedData();
     this.data.data.groups = this.data.data.groups || {};
     this.data.data.attributes = this.data.data.attributes || {};
+    this.data.data.defects = this.data.data.defects || {};
     EntitySheetHelper.clampResourceValues(this.data.data.attributes);
+    EntitySheetHelper.clampResourceValues(this.data.data.defects);
   }
 
   /* -------------------------------------------- */
@@ -60,6 +62,8 @@ export class SimpleActor extends Actor {
     if ( !!shorthand ) {
       delete data.attributes;
       delete data.attr;
+      delete data.defects;
+      delete data.defc;
       delete data.groups;
     }
     return data;

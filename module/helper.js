@@ -219,6 +219,16 @@ export class EntitySheetHelper {
     // Close the HTML and return.
     return result + '</div>';
   }
+  static getDefectHtml(items, index, group = false) {
+    // Initialize the HTML.
+    let result = '<div style="display: none;">';
+    // Iterate over the supplied keys and build their inputs (including whether or not they need a group key).
+    for (let [key, item] of Object.entries(items)) {
+      result = result + `<input type="${item.type}" name="data.defects${group ? '.' + group : '' }.defc${index}.${key}" value="${item.value}"/>`;
+    }
+    // Close the HTML and return.
+    return result + '</div>';
+  }
 
   /* -------------------------------------------- */
 
@@ -317,7 +327,7 @@ export class EntitySheetHelper {
     else {
       // Choose a default dtype based on the last attribute, fall back to "String".
       if (!dtype) {
-        let lastAttr = document.querySelector('.attributes > .attributes-group .attribute:last-child .attribute-dtype')?.value;
+        let lastAttr = document.querySelector('.attributes > .attributes-group .attribute:last-child .attribute-name')?.value;
         dtype = lastAttr ? lastAttr : "String";
         htmlItems.dtype = {
           type: "hidden",
@@ -328,6 +338,75 @@ export class EntitySheetHelper {
 
     // Build the form elements used to create the new grouped attribute.
     newKey.innerHTML = EntitySheetHelper.getAttributeHtml(htmlItems, nk, group);
+
+    // Append the form element and submit the form.
+    newKey = newKey.children[0];
+    form.appendChild(newKey);
+    await app._onSubmit(event);
+  }
+  
+  static async createDefect(event, app) {
+    const a = event.currentTarget;
+    const group = a.dataset.group;
+    let name = a.dataset.name;
+    const defcs = app.object.data.data.defects;
+    const groups = app.object.data.data.groups;
+    const form = app.form;
+
+    // Determine the new attribute key for ungrouped attributes.
+    let objKeys = Object.keys(defcs).filter(k => !Object.keys(groups).includes(k));
+    let nk = Object.keys(defcs).length + 1;
+    let newValue = `defc${nk}`;
+    let newKey = document.createElement("div");
+    while ( objKeys.includes(newValue) ) {
+      ++nk;
+      newValue = `defc${nk}`;
+    }
+
+    // Build options for construction HTML inputs.
+    let htmlItems = {
+      key: {
+        type: "text",
+        value: newValue
+      }
+    };
+
+    // Grouped attributes.
+    if ( group ) {
+      objKeys = defcs[group] ? Object.keys(defcs[group]) : [];
+      nk = objKeys.length + 1;
+      newValue = `defc${nk}`;
+      while ( objKeys.includes(newValue) ) {
+        ++nk;
+        newValue =  `defc${nk}`;
+      }
+
+      // Update the HTML options used to build the new input.
+      htmlItems.key.value = newValue;
+      htmlItems.group = {
+        type: "hidden",
+        value: group
+      };
+      htmlItems.name = {
+        type: "hidden",
+        value: name
+      };
+    }
+    // Ungrouped attributes.
+    else {
+      // Choose a default name based on the last attribute, fall back to "String".
+      if (!name) {
+        let lastAttr = document.querySelector('.defects > .defects-group .defect:last-child .defect-name')?.value;
+        name = lastDefc ? lastDefc : "String";
+        htmlItems.name = {
+          type: "hidden",
+          value: name
+        };
+      }
+    }
+
+    // Build the form elements used to create the new grouped attribute.
+    newKey.innerHTML = EntitySheetHelper.getDefectHtml(htmlItems, nk, group);
 
     // Append the form element and submit the form.
     newKey = newKey.children[0];
@@ -349,6 +428,14 @@ export class EntitySheetHelper {
       await app._onSubmit(event);
     }
   }
+  static async deleteDefect(event, app) {
+    const a = event.currentTarget;
+    const li = a.closest(".defect");
+    if ( li ) {
+      li.parentElement.removeChild(li);
+      await app._onSubmit(event);
+    }
+  }
 
   /* -------------------------------------------- */
 
@@ -359,6 +446,20 @@ export class EntitySheetHelper {
    * @private
    */
   static async createAttributeGroup(event, app) {
+    const a = event.currentTarget;
+    const form = app.form;
+    let newValue = $(a).siblings('.group-prefix').val();
+    // Verify the new group key is valid, and use it to create the group.
+    if ( newValue.length > 0 && EntitySheetHelper.validateGroup(newValue, app.object) ) {
+      let newKey = document.createElement("div");
+      newKey.innerHTML = `<input type="text" name="data.groups.${newValue}.key" value="${newValue}"/>`;
+      // Append the form element and submit the form.
+      newKey = newKey.children[0];
+      form.appendChild(newKey);
+      await app._onSubmit(event);
+    }
+  }
+  static async createDefectGroup(event, app) {
     const a = event.currentTarget;
     const form = app.form;
     let newValue = $(a).siblings('.group-prefix').val();
@@ -472,6 +573,66 @@ export class EntitySheetHelper {
       obj[e[0]] = e[1];
       return obj;
     }, {_id: document.id, "data.attributes": attributes});
+
+    return formData;
+  }
+  static updateDefects(formData, document) {
+    let groupKeys = [];
+
+    // Handle the free-form attributes list
+    const formAttrs = foundry.utils.expandObject(formData)?.data?.defects || {};
+    const defects = Object.values(formDefcs).reduce((obj, v) => {
+      let defcs = [];
+      let group = null;
+      // Handle attribute keys for grouped attributes.
+      if ( !v["key"] ) {
+        defcs = Object.keys(v);
+        defcs.forEach(defcName => {
+          group = v[defcName]['group'];
+          groupKeys.push(group);
+          let defc = v[defcName];
+          let k = v[defcName]["key"] ? v[defcName]["key"].trim() : defcName.trim();
+          if ( /[\s\.]/.test(k) )  return ui.notifications.error("Defect keys may not contain spaces or periods");
+          delete defc["key"];
+          // Add the new attribute if it's grouped, but we need to build the nested structure first.
+          if ( !obj[group] ) {
+            obj[group] = {};
+          }
+          obj[group][k] = defc;
+        });
+      }
+      // Handle attribute keys for ungrouped attributes.
+      else {
+        let k = v["key"].trim();
+        if ( /[\s\.]/.test(k) )  return ui.notifications.error("Defect keys may not contain spaces or periods");
+        delete v["key"];
+        // Add the new attribute only if it's ungrouped.
+        if ( !group ) {
+          obj[k] = v;
+        }
+      }
+      return obj;
+    }, {});
+
+    // Remove attributes which are no longer used
+    for ( let k of Object.keys(document.data.data.defects) ) {
+      if ( !defects.hasOwnProperty(k) ) defects[`-=${k}`] = null;
+    }
+
+    // Remove grouped attributes which are no longer used.
+    for ( let group of groupKeys) {
+      if ( document.data.data.defects[group] ) {
+        for ( let k of Object.keys(document.data.data.defects[group]) ) {
+          if ( !defects[group].hasOwnProperty(k) ) defects[group][`-=${k}`] = null;
+        }
+      }
+    }
+
+    // Re-combine formData
+    formData = Object.entries(formData).filter(e => !e[0].startsWith("data.defects")).reduce((obj, e) => {
+      obj[e[0]] = e[1];
+      return obj;
+    }, {_id: document.id, "data.defects": defects});
 
     return formData;
   }

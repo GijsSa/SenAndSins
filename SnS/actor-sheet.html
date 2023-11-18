@@ -34,44 +34,73 @@
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
-			<div class="flexrow">
-				<div class="stats w-45p">
+			<div class="toparea">
+				<div class="topitem">
+					<span>AR: </span>
+					<input type="text" name="data.ar.value" value="{{systemData.ar.value}}"/>
+				</div>
+				<div class="topitem">
+					<span>CV: </span>
+					<input type="text" name="data.cv.value" value="{{systemData.cv.value}}"/>
+				</div>
+				<div class="topitem">
+					<span>ACV: </span>
+					<input type="text" name="data.acv.value" value="{{systemData.acv.value}}"/>
+				</div>
+				<div class="topitem">
+					<span>DCV: </span>
+					<input type="text" name="data.dcv.value" value="{{systemData.dcv.value}}"/>
+				</div>
+			</div>
+			<div class="mainflex">
+				<div class="stats w-120p attrsidebar">
 					<div class="statblock mt-5">
-						<p class="w-100 text-center mb-1">Body</p>
-						<input class="attribute-value" type="text" name="data.body.main" value="{{systemData.body.main}}"
+						<p class="w-100 text-center mb-1 mainattrtitle">Body</p>
+						<input class="attribute-value mainattrinputfield" type="text" name="data.body.main" value="{{systemData.body.main}}"
                         data-dtype="Number" />
 					</div>
 					<div class="statblock">
-						<p class="w-100 text-center mb-1">Mind</p>
-						<input class="attribute-value" type="text" name="data.mind.main" value="{{systemData.mind.main}}"
+						<p class="w-100 text-center mb-1 mainattrtitle">Mind</p>
+						<input class="attribute-value mainattrinputfield" type="text" name="data.mind.main" value="{{systemData.mind.main}}"
                         data-dtype="Number" />
 					</div>
 					<div class="statblock mb-5">
-						<p class="w-100 text-center mb-1">Soul</p>
-						<input class="attribute-value" type="text" name="data.soul.main" value="{{systemData.soul.main}}"
+						<p class="w-100 text-center mb-1 mainattrtitle">Soul</p>
+						<input class="attribute-value mainattrinputfield" type="text" name="data.soul.main" value="{{systemData.soul.main}}"
                         data-dtype="Number" />
 					</div>
 				</div>
 				<div class="mainattributes w-100">
-					<header class="attributes-header flexrow">
+					<header class="attributes-header flexrow w-100">
 						<span class="attribute-key">{{localize "SIMPLE.AttributeKey"}}</span>
 						<span class="attribute-value">{{localize "SIMPLE.AttributeValue"}}</span>
 						<span class="attribute-label">{{localize "SIMPLE.AttributeLabel"}}</span>
 						<span class="attribute-dtype">{{localize "SIMPLE.AttributeDtype"}}</span>
-						<a class="attribute-control" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
 					</header>
 
 					{{!-- Render the attribute list partial. --}}
 					{{> "systems/senandsins/SnS/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes}}
 
 					{{!-- Render the grouped attributes partial and control. --}}
-					<div class="groups">
-						{{> "systems/senandsins/SnS/parts/sheet-groups.html" attributes=systemData.groupedAttributes groups=systemData.groups dtypes=dtypes}}
+					<div class="groups w-100">
+						<a class="attribute-control text-right w-100" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
+					</div>
+					
+					<div class="mainattrheadertext">
+						<p>Defects</p>
+					</div>
+					<header class="defects-header flexrow w-100">
+						<span class="defects-key">{{localize "SIMPLE.DefectLevel"}}</span>
+						<span class="defects-value">{{localize "SIMPLE.DefectCost"}}</span>
+						<span class="defects-label">{{localize "SIMPLE.DefectFlux"}}</span>
+						<span class="defects-dtype">{{localize "SIMPLE.DefectName"}}</span>
+					</header>
 
-						<div class="group-controls flexrow">
-							<input class="group-prefix" type="text" value=""/>
-							<a class="button group-control" data-action="create-group"><i class="fas fa-plus"></i>Add Attribute Group</a>
-						</div>
+					{{!-- Render the defects list partial. --}}
+					{{> "systems/senandsins/SnS/parts/sheet-defects.html" attributes=systemData.ungroupedDefects dtypes=dtypes}}
+
+					<div class="groups w-100">
+						<a class="defects-control text-right w-100" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
 					</div>
 				</div>
             </div>

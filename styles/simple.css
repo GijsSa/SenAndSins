@@ -112,17 +112,17 @@
   flex: none;
   width: auto;
 }
-.senandsins .attributes {
+.senandsins .attributes, .senandsins .defects {
   position: relative;
 }
-.senandsins .attributes .attribute-control,
-.senandsins .attributes .group-control {
+.senandsins .attributes .attribute-control, .senandsins .defects .defect-control,
+.senandsins .attributes .group-control, .senandsins .defects .group-control {
   flex: 0 0 20px;
   text-align: center;
   line-height: 28px;
   border: none;
 }
-.senandsins .attributes .attribute-roll {
+.senandsins .attributes .attribute-roll, .senandsins .defects .defect-roll {
   flex: 0 0 20px;
   text-align: center;
   border-bottom: none;
@@ -130,11 +130,11 @@
   align-items: center;
   justify-content: center;
 }
-.senandsins .attributes .group-prefix {
+.senandsins .attributes .group-prefix, .senandsins .defects .group-prefix {
   height: 31px;
   margin-right: 10px;
 }
-.senandsins .attributes .button {
+.senandsins .attributes .button, .senandsins .defects .button {
   width: 100%;
   flex: 1;
   margin: 0;
@@ -145,11 +145,11 @@
   line-height: 28px;
   display: block;
 }
-.senandsins .attributes .attribute-key {
+.senandsins .attributes .attribute-key, .senandsins .defects .defect-key {
   background: transparent;
   border: none;
 }
-.senandsins .attributes-header {
+.senandsins .attributes-header, .senandsins .defects-header {
   position: sticky;
   top: 0;
   left: 0;
@@ -162,12 +162,12 @@
   text-align: left;
   font-weight: bold;
 }
-.senandsins .attributes-list {
+.senandsins .attributes-list, .senandsins .defects-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.senandsins .attributes-list li > * {
+.senandsins .attributes-list li > *, .senandsins .defects-list li > * {
   margin: 0 3px;
   height: 28px;
   line-height: 24px;
@@ -176,37 +176,68 @@
   border-radius: 0;
   border-bottom: 1px solid #AAA;
 }
-.senandsins .attributes-list .attribute-col label {
+.senandsins .attributes-list .attribute-col label, .senandsins .defects-list .defect-col label {
   font-size: 10px;
   text-align: center;
   line-height: 1;
 }
-.senandsins .attributes-list .attribute-col input {
+.senandsins .attributes-list .attribute-col input, .senandsins .defects-list .defect-col input {
   font-size: 11px;
   text-align: center;
   line-height: 1;
   height: 50%;
 }
-.senandsins .attribute input[type="text"]::placeholder,
+.senandsins .attribute input[type="text"]::placeholder, .senandsins .defects input[type="text"]::placeholder,
 .senandsins .group-header input[type="text"]::placeholder {
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
 }
-.senandsins .attribute input[type="text"]:focus::placeholder,
+.senandsins .attribute input[type="text"]:focus::placeholder, .senandsins .defects input[type="text"]:focus::placeholder,
 .senandsins .group-header input[type="text"]:focus::placeholder {
   opacity: 1;
 }
 .senandsins .group-controls {
   margin: 5px;
 }
-.senandsins .attributes .flexrow{
-	display:flex;
+.senandsins .attributes .mainattributes{
+    display: block;
+    width: calc(100% - 120px);
 }
 .senandsins .attributes .w-100{
 	width:100%;
 }
-.senandsins .attributes .w-45p{
-	width:45px;
+.senandsins .mainflex{
+	display: flex;
+}
+.senandsins .mainattrinputfield{
+    height: 28px;
+    line-height: 24px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 7px;
+}
+.senandsins .toparea{
+	flex: 1;
+    display: flex;
+}
+.senandsins .topitem{
+	flex: 1;
+    display: flex;
+    margin: 5px;
+}
+.senandsins .topitem span{
+    margin-top: 3px;
+    margin-right: 7px;
+}
+.senandsins .mainattrtitle{
+    font-size: 20px;
+    margin-top: 1px;
+}
+.senandsins .attributes .w-120p{
+	width:120px;
 }
 .senandsins .mb-1{
 	margin-bottom: 3px;
@@ -217,6 +248,9 @@
 }
 .senandsins .text-center{
 	text-align: center;
+}
+.senandsins .text-right{
+	text-align: right;
 }
 .senandsins .groups-list {
   list-style: none;

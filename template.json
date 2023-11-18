@@ -22,6 +22,18 @@
 	"soul": {
 		"main": 0
 	},
+	"ar": {
+		"main": "0"
+	},
+	"cv": {
+		"main": 0
+	},
+	"acv": {
+		"main": 0
+	},
+	"dcv": {
+		"main": 0
+	},
     "groups": {}
   }
 },
@@ -32,6 +44,7 @@
     "quantity": 1,
     "weight": 0,
     "attributes": {},
+    "defects": {},
     "groups": {}
   }
 }
