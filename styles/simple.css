@@ -1,14 +1,23 @@
 .senandsins {
+  --lightestpuppy: #fce8ff;
+  --middlepuppy: #f3d2ff;
+  --darkestpuppy: #e8adff;
   /* Sheet Tabs */
   /* Items List */
   /* Attributes */
 }
+.senandsins .window-header {
+  background: var(--darkestpuppy); 
+  color: black;
+}
+
 .senandsins .window-content {
+  background: var(--middlepuppy);
   height: 100%;
   padding: 5px;
   overflow-y: hidden;
 }
-.senandsins form {
+.senandsins .form {
   height: 100%;
 }
 .senandsins .sheet-header {
@@ -29,6 +38,7 @@
   flex: 1;
   height: 100px;
 }
+
 .senandsins .sheet-header h1.charname {
   height: 50px;
   padding: 0px;
@@ -36,9 +46,10 @@
   border-bottom: 0;
 }
 .senandsins .sheet-header h1.charname input {
-  width: 100%;
+  width: 50%;
   height: 100%;
   margin: 0;
+  background: var(--lightestpuppy);
 }
 .senandsins .resource {
   width: 50%;
@@ -50,12 +61,13 @@
 .senandsins .resource input {
   width: 100px;
   height: 28px;
+  background: var(--lightestpuppy);
 }
 .senandsins .tabs {
   flex: 0 0 40px;
-  border-top: 1px solid #AAA;
-  border-bottom: 1px solid #AAA;
+  background: var(--darkestpuppy);
 }
+
 .senandsins .tabs .item {
   line-height: 40px;
   font-weight: bold;
@@ -64,6 +76,7 @@
   text-decoration: underline;
   text-shadow: none;
 }
+
 .senandsins .sheet-body {
   overflow: hidden;
 }
@@ -85,7 +98,7 @@
   min-height: 30px;
   line-height: 24px;
   padding: 3px 0;
-  border-bottom: 1px solid #BBB;
+  border-bottom: 1px solid black;
   align-items: stretch;
 }
 .senandsins .item-list .item img {
@@ -146,7 +159,6 @@
   display: block;
 }
 .senandsins .attributes .attribute-key {
-  background: transparent;
   border: none;
 }
 .senandsins .attributes-header {
@@ -156,8 +168,8 @@
   align-items: center;
   padding: 0 5px;
   margin: 5px 0;
-  background: #cfcdc2;
-  border: 1px solid #AAA;
+  background: var(--darkestpuppy);
+  border: 1px solid black;
   border-radius: 2px;
   text-align: left;
   font-weight: bold;
@@ -186,37 +198,26 @@
   text-align: center;
   line-height: 1;
   height: 50%;
+  background: var(--lightestpuppy);
 }
 .senandsins .attribute input[type="text"]::placeholder,
 .senandsins .group-header input[type="text"]::placeholder {
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
+  background: var(--lightestpuppy);
 }
 .senandsins .attribute input[type="text"]:focus::placeholder,
 .senandsins .group-header input[type="text"]:focus::placeholder {
   opacity: 1;
+  background: var(--lightestpuppy);
 }
+
+.senandsins .attribute-value{
+  background: var(--lightestpuppy);
+}
+
 .senandsins .group-controls {
   margin: 5px;
-}
-.senandsins .attributes .flexrow{
-	display:flex;
-}
-.senandsins .attributes .w-100{
-	width:100%;
-}
-.senandsins .attributes .w-45p{
-	width:45px;
-}
-.senandsins .mb-1{
-	margin-bottom: 3px;
-}
-.senandsins .attributes .statblock{
-	border: 1px solid black;
-	margin: 10px;
-}
-.senandsins .text-center{
-	text-align: center;
 }
 .senandsins .groups-list {
   list-style: none;
@@ -254,11 +255,16 @@
   flex: 0 0 116px;
   margin: 0 5px;
 }
-.senandsins.sheet.actor {
+.senandsins .sheet.actor {
   min-width: 560px;
   min-height: 420px;
 }
-.senandsins.sheet.item {
+.senandsins .sheet.item {
   min-width: 460px;
   min-height: 400px;
+}
+.sheet nav.sheet-tabs {
+  margin: 4px 0;
+  border-top: 1px solid var(--darkestpuppy);
+  border-bottom: 1px solid black;
 }
