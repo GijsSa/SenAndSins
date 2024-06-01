@@ -9,9 +9,9 @@ export class SimpleActor extends Actor {
   /** @inheritdoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.data.data.groups = this.data.data.groups || {};
-    this.data.data.attributes = this.data.data.attributes || {};
-    EntitySheetHelper.clampResourceValues(this.data.data.attributes);
+    this.system.groups = this.system.groups || {};
+    this.system.attributes = this.system.attributes || {};
+    EntitySheetHelper.clampResourceValues(this.system.attributes);
   }
 
   /* -------------------------------------------- */
@@ -252,7 +252,7 @@ export class SimpleActor extends Actor {
 
   /** @inheritdoc */
   async modifyTokenAttribute(attribute, value, isDelta = false, isBar = true) {
-    const current = foundry.utils.getProperty(this.data.data, attribute);
+    const current = foundry.utils.getProperty(this.data.system, attribute);
     if ( !isBar || !isDelta || (current?.dtype !== "Resource") ) {
       return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
     }

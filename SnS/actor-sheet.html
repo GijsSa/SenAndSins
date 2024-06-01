@@ -2,22 +2,26 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" height="100" width="100" />
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
         <div class="header-fields">
-            <h1 class="charname">
-                <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
-            </h1>
-            <div class="resource">
-				<span>HP: </span>
-                <input type="number" name="data.health.value" value="{{systemData.health.value}}"/>
-                <span> / </span>
-                <input type="number" name="data.health.max" value="{{systemData.health.max}}"/>
-            </div>
-            <div class="resource">
-				<span>EP: </span>
-                <input type="number" name="data.power.value" value="{{systemData.power.value}}"/>
-                <span> / </span>
-                <input type="number" name="data.power.max" value="{{systemData.power.max}}"/>
+            <div class="charname">
+                <input class="nameInput" name="name" type="text" value="{{data.name}}" placeholder="Name" />
+                <input class="charAtrributeInput" name="system.species.main" value="{{systemData.species.main}}" type="text" placeholder="Species"/>
+                <input class="charAtrributeInput" name="system.height.main" value="{{systemData.height.main}}" type="text" placeholder="Height"/>
+                
+                <div class="resource">
+                    <span class="resourceSpan">HP: </span>
+                    <input class="valueInput" type="number" name="system.health.value" value="{{systemData.health.value}}"/>
+                    <span class="resourceSpan"> / </span>
+                    <input class="valueInput" type="number" name="system.health.max" value="{{systemData.health.max}}"/>
+                </div>
+                <div class="resource">
+                    <span class="resourceSpan">EP: </span>
+                    <input class="valueInput" type="number" name="system.power.value" value="{{systemData.power.value}}"/>
+                    <span class="resourceSpan"> / </span>
+                    <input class="valueInput" type="number" name="system.power.max" value="{{systemData.power.max}}"/>
+                </div>
+                
             </div>
         </div>
     </header>
@@ -25,54 +29,120 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="attributes">General</a>
-        <a class="item" data-tab="items">Items</a>
+        <a class="items" data-tab="items">Items</a>
         <a class="item" data-tab="description">Description</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
+        <div class="armorcombat grid grid-4col">
+            <div class="combatResource">
+                <span>AR: </span>
+                <input class="resourceValueInput" type="number" name="system.stats.armourRating.main" value="{{systemData.stats.armourRating.main}}" placeholder="0"/>
+            </div>
+            
+            <div class="combatResource">
+                <span>CV: </span>
+                <input class="resourceValueInput" type="number" name="system.stats.combatValue.main" value="{{systemData.stats.combatValue.main}}" placeholder="0"/>
+            </div>
+            
+            <div class="combatResource">
+                <span>ACV: </span>
+                <input class="resourceValueInput" type="number" name="system.stats.attackCombatValue.main" value="{{systemData.stats.attackCombatValue.main}}" placeholder="0"/>
+            </div>
+            
+            <div class="combatResource">
+                <span>DCV: </span>
+                <input class="resourceValueInput" type="number" name="system.stats.defenceCombatValue.main" value="{{systemData.stats.defenceCombatValue.main}}" placeholder="0"/>
+            </div>
+        </div>
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
-			<div class="flexrow">
-				<div class="stats w-45p">
-					<div class="statblock mt-5">
-						<p class="w-100 text-center mb-1">Body</p>
-						<input class="attribute-value" type="text" name="data.body.main" value="{{systemData.body.main}}"
+			<div class="flexstats">
+				<div class="stats">
+					<div class="statblock">
+						<p class="attribute-top w-100 text-center mb-1">Body</p>
+						<input class="stat-value" name="system.body.main" type="text" value="{{systemData.body.main}}" placeholder="0"
                         data-dtype="Number" />
 					</div>
 					<div class="statblock">
-						<p class="w-100 text-center mb-1">Mind</p>
-						<input class="attribute-value" type="text" name="data.mind.main" value="{{systemData.mind.main}}"
+						<p class="attribute-top w-100 text-center mb-1">Mind</p>
+						<input class="stat-value" name="system.mind.main" type="text" value="{{systemData.mind.main}}" placeholder="0"
                         data-dtype="Number" />
 					</div>
-					<div class="statblock mb-5">
-						<p class="w-100 text-center mb-1">Soul</p>
-						<input class="attribute-value" type="text" name="data.soul.main" value="{{systemData.soul.main}}"
+					<div class="statblock">
+						<p class="attribute-top w-100 text-center mb-1">Soul</p>
+						<input class="stat-value" name="system.soul.main" type="text" value="{{systemData.soul.main}}" placeholder="0"
                         data-dtype="Number" />
 					</div>
 				</div>
-				<div class="mainattributes w-100">
-					<header class="attributes-header flexrow">
-						<span class="attribute-key">{{localize "SIMPLE.AttributeKey"}}</span>
-						<span class="attribute-value">{{localize "SIMPLE.AttributeValue"}}</span>
-						<span class="attribute-label">{{localize "SIMPLE.AttributeLabel"}}</span>
-						<span class="attribute-dtype">{{localize "SIMPLE.AttributeDtype"}}</span>
-						<a class="attribute-control" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
-					</header>
-
-					{{!-- Render the attribute list partial. --}}
-					{{> "systems/senandsins/SnS/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes}}
-
-					{{!-- Render the grouped attributes partial and control. --}}
-					<div class="groups">
-						{{> "systems/senandsins/SnS/parts/sheet-groups.html" attributes=systemData.groupedAttributes groups=systemData.groups dtypes=dtypes}}
-
-						<div class="group-controls flexrow">
-							<input class="group-prefix" type="text" value=""/>
-							<a class="button group-control" data-action="create-group"><i class="fas fa-plus"></i>Add Attribute Group</a>
-						</div>
-					</div>
+				<div class="mainattributes">
+                    <div class="encapDiv">
+                        <header class="attributes-header flexrow">
+                            <h2 class="attribute-titel">Attributes</h2>
+                            <div class="header-attributes">
+                                <span class="span-small">Lvl</span>
+                                <span class="span-small">Cost</span>
+                                <span class="span-small">Flux</span>
+                                <span class="span-big">Attribute</span>
+                                <div class="item-controls">
+                                    <a class="item-control " data-action="createAttribute"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </header>
+                        <ol class="attributes-list">
+                                {{#each charAtrributes as |SimpleItem id|}}
+                                <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}">
+                                    <input class="item-small" type="number" name="SimpleItem.system.level.main" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
+                                    <input class="item-small" type="number" name="SimpleItem.system.cost.main" value="{{SimpleItem.system.cost.main}}" placeholder="0" disabled> </input>
+                                    <input class="item-small" type="number" name="SimpleItem.system.flux.main" value="{{SimpleItem.system.flux.main}}" placeholder="0" disabled></input>
+                                    <input class="item-big" name="SimpleItem.system.name" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
+                                    <div class="item-controls">
+                                        <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
+                                        <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
+                                    </div>
+                                </li>
+                                <div class="span-collabsible">
+                                    <span name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
+                                </div>
+                                {{/each}}
+                        </ol>
+                    </div>
+                    
+                    <div class="encapDiv">
+                        <header class="attributes-header flexrow">
+                            <h2 class="attribute-titel">Defects</h2>
+                            
+                            <div class="header-attributes">
+                                <span class="span-small">Lvl</span>
+                                <span class="span-small">Cost</span>
+                                <span class="span-small">Flux</span>
+                                <span class="span-big">Attribute</span>
+                                <div class="item-controls">
+                                    <a class="item-control " data-action="createDefect"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                            
+                        </header>
+                        <ol class="attributes-list">
+                                {{#each charDefects as |SimpleItem id|}}
+                                    <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}">
+                                        <input class="item-small" type="number" name="{{SimpleItem.system.level.main}}" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
+                                        <input class="item-small" type="number" name="{{SimpleItem.system.cost.main}}" value="{{SimpleItem.system.cost.main}}" placeholder="0" disabled> </input>
+                                        <input class="item-small" type="number" name="{{SimpleItem.system.flux.main}}" value="{{SimpleItem.system.flux.main}}"  placeholder="0"disabled></input>
+                                        <input class="item-big" name="{{SimpleItem.system.name}}" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
+                                        <div class="item-controls">
+                                            <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
+                                            <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </li>
+                                    <div class="span-collabsible">
+                                        <span name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
+                                    </div>
+                                {{/each}}
+                        </ol>
+                    </div>
 				</div>
             </div>
         </div>
@@ -80,44 +150,11 @@
         {{!-- Owned Items Tab --}}
         <div class="tab items" data-group="primary" data-tab="items">
             <ol class="item-list">
-                {{#each data.items as |item id|}}
+                {{#each gear as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                     <h4 class="item-name">{{item.name}}</h4>
                     {{!-- Iterate through all attributes on the item and output buttons for any that are formula. --}}
-                    <div class="item-buttons">
-                        {{#each item.data.attributes as |itemAttr key|}}
-                        {{#if itemAttr.dtype}}
-                            {{#if itemAttr.isFormula}}
-                                {{!-- Use the items.name.key format for shorthand. --}}
-                                {{#if ../../shorthand}}
-                                <button class="item-button rollable" data-roll="@items.{{slugify item.name}}.{{key}}" data-label="{{ itemAttr.label }}"
-                                    title="{{itemAttr.value}}">{{itemAttr.label}}</button>
-                                {{!-- Use the items.name.attributes.key.value format otherwise. --}}
-                                {{else}}
-                                <button class="item-button rollable"
-                                    data-roll="@items.{{slugify item.name}}.attributes.{{key}}.value" data-label="{{ itemAttr.label }}"
-                                    title="{{itemAttr.value}}">{{itemAttr.label}}</button>
-                                {{/if}}
-                            {{/if}}
-                        {{else}}
-                            {{#each itemAttr as |itemGroupedAttr groupedKey|}}
-                                {{#if itemGroupedAttr.isFormula}}
-                                    {{!-- Use the items.name.key format for shorthand. --}}
-                                    {{#if ../../../shorthand}}
-                                    <button class="item-button rollable" data-roll="@items.{{slugify item.name}}.{{key}}.{{groupedKey}}" data-label="{{ itemGroupedAttr.label }}"
-                                        title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
-                                    {{!-- Use the items.name.attributes.key.value format otherwise. --}}
-                                    {{else}}
-                                    <button class="item-button rollable"
-                                        data-roll="@items.{{slugify item.name}}.attributes.{{key}}.{{groupedKey}}.value" data-label="{{ itemGroupedAttr.label }}"
-                                        title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
-                                    {{/if}}
-                                {{/if}}
-                            {{/each}}
-                        {{/if}}
-                        {{/each}}
-                    </div>
                     <div class="item-controls">
                         <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
                         <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
@@ -126,13 +163,30 @@
                 {{/each}}
             </ol>
             <p>
-                <a class="item-control" title="{{ localize "SIMPLE.ItemCreate" }}" data-action="create"><i class="fas fa-plus"></i> {{ localize "SIMPLE.ItemCreate" }}</a>
+                <a class="item-control" title="{{ localize "SIMPLE.ItemCreate" }}" data-action="createItem"><i class="fas fa-plus"></i> {{ localize "SIMPLE.ItemCreate" }}</a>
             </p>
         </div>
 
         {{!-- Biography Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            {{editor content=systemData.biography target="data.biography" button=true owner=owner editable=editable rollData=rollData}}
+            {{editor enrichedBiography target="system.biography" button=true editable=editable}}
         </div>
     </section>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+        </script>
+        
 </form>

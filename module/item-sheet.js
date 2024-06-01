@@ -11,7 +11,6 @@ export class SimpleItemSheet extends ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["senandsins", "sheet", "item"],
-      template: "systems/senandsins/SnS/item-sheet.html",
       width: 520,
       height: 480,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
@@ -22,11 +21,12 @@ export class SimpleItemSheet extends ItemSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getData() {
-    const context = super.getData();
+  async getData(options) {
+    const context = super.getData(options);
     EntitySheetHelper.getAttributeData(context.data);
-    context.systemData = context.data.data;
+    context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
+    context.enrichedBiography = await TextEditor.enrichHTML(this.object.system.description);
     return context;
   }
 
@@ -62,5 +62,28 @@ export class SimpleItemSheet extends ItemSheet {
     formData = EntitySheetHelper.updateAttributes(formData, this.object);
     formData = EntitySheetHelper.updateGroups(formData, this.object);
     return formData;
+  }
+
+  get template(){
+    
+    const path = 'systems/senandsins/SnS/items';
+    // Return a single sheet for all item types.
+    // return `${path}/item-sheet.hbs`;
+  
+    // Alternatively, you could use the following return statement to do a
+    // unique item sheet by type, like `weapon-sheet.hbs`.
+    switch(this.item.type){
+      case "item":
+        {
+          return `${path}/item-${this.item.type}-sheet.html`;
+        }
+        case "defect":
+          case "attribute":
+            {
+              return `${path}/item-attribute-sheet.html`;
+            }
+    }
+
+    return `${path}/item-${this.item.type}-sheet.html`;
   }
 }

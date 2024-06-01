@@ -29,50 +29,118 @@
   justify-content: flex-start;
   margin-bottom: 10px;
 }
+
 .senandsins .sheet-header .profile-img {
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
 }
+
 .senandsins .sheet-header .header-fields {
   flex: 1;
   height: 100px;
 }
 
-.senandsins .sheet-header h1.charname {
-  height: 50px;
-  padding: 0px;
+.senandsins .sheet-header h2.charname {
+  height:130px;
   margin: 5px 0;
   border-bottom: 0;
 }
-.senandsins .sheet-header h1.charname input {
-  width: 50%;
-  height: 100%;
-  margin: 0;
+
+.senandsins .sheet-header .charname .charAtrributeInput {
+  width: 29%;
+  height: 50%;
+  font-weight: bold;
+  font-size: 30px;
+  background: var(--lightestpuppy);
+}
+.senandsins .sheet-header .charname .nameInput{
+  width: 40%;
+  height: 50%;
+  font-weight: bold;
+  font-size: 30px;
   background: var(--lightestpuppy);
 }
 .senandsins .resource {
-  width: 50%;
-  height: 40px;
+  width: 40%;
   margin-top: 10px;
   float: left;
-  text-align: center;
 }
-.senandsins .resource input {
-  width: 100px;
-  height: 28px;
+
+.senandsins .resource .resourceSpan {
+  width: 50px;
+  height: 25px;
+  font-size: 26px;
+}
+
+.senandsins .resource .valueInput {
+  width: 55px;
+  height: 30px;
+  font-size: 26px;
   background: var(--lightestpuppy);
 }
+
+
+.senandsins .item-resource {    
+  width: 50%;
+  margin-top: 10px;
+  float: left;
+  display: flex;
+}
+
+.senandsins .item-resource .resourceSpan {
+  font-size: medium;
+  width: 25%;
+  margin-right: 5px;
+}
+
+.senandsins .item-resource .valueInput {    
+  width: auto;
+  height: auto;
+  font-size: medium;
+  background: var(--lightestpuppy);
+}
+
+.senandsins .combatResource {
+  width: 25%;
+  margin-top: 4px;
+  margin-left: -1px;
+  float: left;
+}
+
+
+.senandsins .combatResource .resourceValueInput {
+  width: 32px;
+  height: 15px;
+  background: var(--lightestpuppy);
+}
+
 .senandsins .tabs {
-  flex: 0 0 40px;
+  height: 30px;
+  flex: 0 0 0px;
   background: var(--darkestpuppy);
 }
 
 .senandsins .tabs .item {
-  line-height: 40px;
   font-weight: bold;
 }
+
+.senandsins .tabs .items {
+  width: 33%;
+  font-weight: bold;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  text-align: center;
+  height: 85%;
+  line-height: 10px;
+}
+
 .senandsins .tabs .item.active {
+  text-decoration: underline;
+  text-shadow: none;
+}
+
+.senandsins .tabs .items.active {
   text-decoration: underline;
   text-shadow: none;
 }
@@ -88,6 +156,66 @@
 .senandsins .editor-content {
   height: 100%;
 }
+
+.senandsins .armorcombat{
+  height: 25px;
+  margin-left: 10px;
+  display: flex;
+}
+
+.senandsins .flexstats{
+  display: flex;
+  width: 100%;
+}
+
+.senandsins .stats {
+  margin: 5px 0;
+  width: 15%;
+}
+
+.senandsins .mainattributes{
+  width: 85%;
+  background-color: var(--darkestpuppy);
+  border: 1px black solid;
+}
+
+.senandsins .attribute-top{
+  font-size: medium;
+  vertical-align: top;
+  margin: 10px 0 0 0;
+}
+
+.senandsins .stat-value{
+  border: 0px;
+  background: var(--lightestpuppy);
+  text-align: center;
+  font-size: medium;
+  margin-bottom: 5px;
+}
+
+.senandsins .statblock{    
+  width: 64px;
+  height: 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: all;
+  background: var(--lightestpuppy);
+  border: 1px solid black;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.senandsins .encapDiv{
+  background-color: var(--darkestpuppy);
+  scroll-behavior: auto;
+  overflow: overlay;
+  max-height: 300px;
+
+}
+
 .senandsins .item-list {
   list-style: none;
   margin: 7px 0;
@@ -101,6 +229,7 @@
   border-bottom: 1px solid black;
   align-items: stretch;
 }
+
 .senandsins .item-list .item img {
   flex: 0 0 24px;
   margin-right: 5px;
@@ -128,6 +257,13 @@
 .senandsins .attributes {
   position: relative;
 }
+
+.senandsins .attributeAdd{
+
+  text-align: center;
+  border: none;
+}
+
 .senandsins .attributes .attribute-control,
 .senandsins .attributes .group-control {
   flex: 0 0 20px;
@@ -162,6 +298,7 @@
   border: none;
 }
 .senandsins .attributes-header {
+  display: block;
   position: sticky;
   top: 0;
   left: 0;
@@ -169,25 +306,48 @@
   padding: 0 5px;
   margin: 5px 0;
   background: var(--darkestpuppy);
-  border: 1px solid black;
-  border-radius: 2px;
   text-align: left;
   font-weight: bold;
 }
+
+.senandsins .attribute-titel{ 
+  margin: 5px 5px 0px 5px;
+  border-bottom: 1px solid black;
+}
+
+.senandsins .header-attributes{
+  display:flex;
+}
+.senandsins .item-small{
+  background: var(--lightestpuppy);
+
+}
+.senandsins .item-big{
+  background: var(--lightestpuppy);
+  border-radius: 5px;
+
+}
+.senandsins .span-small{width: 50%;
+  width: 15%;
+  margin-left: 5px;
+}
+.senandsins .span-big{
+  width: 38%;
+  margin-left: 3px;
+}
+
 .senandsins .attributes-list {
   list-style: none;
-  margin: 0;
+  margin-left: 5px;
   padding: 0;
 }
 .senandsins .attributes-list li > * {
   margin: 0 3px;
-  height: 28px;
+  height: auto;
   line-height: 24px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid #AAA;
+  margin-bottom: 5px;
 }
+
 .senandsins .attributes-list .attribute-col label {
   font-size: 10px;
   text-align: center;
@@ -265,6 +425,15 @@
 }
 .sheet nav.sheet-tabs {
   margin: 4px 0;
-  border-top: 1px solid var(--darkestpuppy);
+  border-top: 0px;
   border-bottom: 1px solid black;
+}
+
+.senandsins .collapsible {
+}
+
+.senandsins .span-collabsible{
+  padding: 0 5px;
+  display: none;
+  overflow: hidden;
 }
