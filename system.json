@@ -2,11 +2,11 @@
     "id": "senandsins",
     "title": "Sen and Sin",
     "description": "A simple system for our pal",
-    "version": "0.0.1",
+    "version": "0.3.2",
     "compatibility": {
       "minimum": "10",
       "verified": "11",
-      "maximum": "11"
+      "maximum": "12"
     },
     "authors": [
       {
@@ -16,10 +16,10 @@
     "scripts": [
     ],
     "esmodules": [
-	"module/simple.js"
+	      "module/simple.js"
     ],
     "styles": [
-	"styles/simple.css"
+	      "styles/simple.css"
     ],
     "packs": [
     ],
@@ -30,7 +30,6 @@
         "path": "lang/en.json"
       }
     ],
-    "socket": false,
     "gridDistance": 10,
     "gridUnits": "m",
     "primaryTokenAttribute": "health",
