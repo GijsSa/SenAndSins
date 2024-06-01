@@ -9,9 +9,9 @@ export class SimpleActor extends Actor {
   /** @inheritdoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.data.data.groups = this.data.data.groups || {};
-    this.data.data.attributes = this.data.data.attributes || {};
-    EntitySheetHelper.clampResourceValues(this.data.data.attributes);
+    this.system.groups = this.system.groups || {};
+    this.system.attributes = this.system.attributes || {};
+    EntitySheetHelper.clampResourceValues(this.system.attributes);
   }
 
   /* -------------------------------------------- */
@@ -28,7 +28,7 @@ export class SimpleActor extends Actor {
    * @type {boolean}
    */
   get isTemplate() {
-    return !!this.getFlag("worldbuilding", "isTemplate");
+    return !!this.getFlag("senandsins", "isTemplate");
   }
 
   /* -------------------------------------------- */
@@ -40,7 +40,7 @@ export class SimpleActor extends Actor {
 
     // Copy the actor's system data
     const data = this.toObject(false).data;
-    const shorthand = game.settings.get("worldbuilding", "macroShorthand");
+    const shorthand = game.settings.get("senandsins", "macroShorthand");
     const formulaAttributes = [];
     const itemAttributes = [];
 
@@ -252,7 +252,7 @@ export class SimpleActor extends Actor {
 
   /** @inheritdoc */
   async modifyTokenAttribute(attribute, value, isDelta = false, isBar = true) {
-    const current = foundry.utils.getProperty(this.data.data, attribute);
+    const current = foundry.utils.getProperty(this.data.system, attribute);
     if ( !isBar || !isDelta || (current?.dtype !== "Resource") ) {
       return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
     }

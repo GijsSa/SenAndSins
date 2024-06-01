@@ -10,24 +10,49 @@ export class SimpleActorSheet extends ActorSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["worldbuilding", "sheet", "actor"],
-      template: "systems/senandsins/templates/actor-sheet.html",
+      classes: ["senandsins", "sheet", "actor"],
+      template: "systems/senandsins/SnS/actor-sheet.html",
       width: 600,
       height: 600,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
       scrollY: [".biography", ".items", ".attributes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
 
-  /* -------------------------------------------- */
+  _prepareItems(context){
+    const gear = [];
+    const attributes = [];
+    const defects = [];
+
+    for (let i of context.items) {
+      i.img = i.img || DEFAULT_TOKEN;
+      // Append to gear.
+      if (i.type === 'item') {
+        gear.push(i);
+      }
+      // Append to features.
+      else if (i.type === 'attribute') {
+        attributes.push(i);
+      }
+      // Append to spells.
+      else if (i.type === 'defect') {
+        defects.push(i);
+      }
+    }
+
+    context.gear = gear;
+    context.charAtrributes = attributes;
+    context.charDefects = defects;
+  }
 
   /** @inheritdoc */
   getData() {
     const context = super.getData();
     EntitySheetHelper.getAttributeData(context.data);
-    context.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
-    context.systemData = context.data.data;
+    this._prepareItems(context);
+    context.shorthand = !!game.settings.get("senandsins", "macroShorthand");
+    context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
     return context;
   }
@@ -59,7 +84,6 @@ export class SimpleActorSheet extends ActorSheet {
       }, false);
     });
   }
-
   /* -------------------------------------------- */
 
   /**
@@ -75,11 +99,18 @@ export class SimpleActorSheet extends ActorSheet {
     const li = button.closest(".item");
     const item = this.actor.items.get(li?.dataset.itemId);
 
-    // Handle different actions
+    // Handle different 
+    let cls;
     switch ( button.dataset.action ) {
-      case "create":
-        const cls = getDocumentClass("Item");
+      case "createItem":
+        cls = getDocumentClass("Item");
         return cls.create({name: game.i18n.localize("SIMPLE.ItemNew"), type: "item"}, {parent: this.actor});
+      case "createAttribute":
+        cls = getDocumentClass("Item");
+        return cls.create({name: game.i18n.localize("SIMPLE.AttributeNew"), type: "attribute"}, {parent: this.actor});
+        case "createDefect":
+          cls = getDocumentClass("Item");
+          return cls.create({name: game.i18n.localize("SIMPLE.DefectNew"), type: "defect"}, {parent: this.actor});
       case "edit":
         return item.sheet.render(true);
       case "delete":

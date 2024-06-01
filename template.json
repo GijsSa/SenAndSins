@@ -1,38 +1,85 @@
 {
-"Actor": {
-  "types": ["character"],
-  "character": {
-    "biography": "",
-    "health": {
-      "value": 10,
-      "min": 0,
-      "max": 10
+  "Actor": {
+    "types": ["character"],
+    "templates": {
+      "resources": {
+        "health": {
+          "min": 0,
+          "value": 10,
+          "max": 10
+        },
+        "power": {
+          "min": 0,
+          "value": 1,
+          "max": 3
+        }
+      }
     },
-    "power": {
-      "value": 5,
-      "min": 0,
-      "max": 5
+    "character": {
+      "templates": ["resources"],
+      "height":{
+         "main": ""
+       },
+       "species":{
+         "main": ""
+       },
+       "mind":{
+         "main": 0
+       },
+       "body":{
+         "main": 0
+       },
+       "soul":{
+         "main": 0
+       },
+       "stats":{
+          "armourRating":{
+            "main": 0
+          },
+          "combatValue":{
+            "main":0
+          },
+          "attackCombatValue":{
+            "main":0
+          },
+          "defenceCombatValue":{
+            "main":0
+          }
+       }
+    }
+  },
+  "Item": {
+    "types": ["item","attribute","defect"],
+    "templates": {
+      "base": {
+        "rarity": "Common",
+        "price": 20
+      },
+      "attribute":{
+        "level":{
+          "main":0
+        },
+        "cost":{
+          "main":0
+        },
+        "flux":{
+          "main":0
+        }
+      }
     },
-	"body": {
-		"main": 0
-	},
-	"mind": {
-		"main": 0
-	},
-	"soul": {
-		"main": 0
-	},
-    "groups": {}
+    "item": {
+      "templates": ["item"],
+      "description": "",
+      "quantity": 1,
+      "weight": 0
+    },
+    "attribute":{
+      "templates": ["attribute"],
+      "description": ""
+    },
+    "defect":{
+      "templates": ["attribute"],
+      "description": ""
+    }
   }
-},
-"Item": {
-  "types": ["item"],
-  "item": {
-    "description": "",
-    "quantity": 1,
-    "weight": 0,
-    "attributes": {},
-    "groups": {}
-  }
-}
 }

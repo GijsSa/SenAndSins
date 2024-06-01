@@ -8,6 +8,9 @@
   "SIMPLE.ItemEdit": "Edit Item",
   "SIMPLE.ItemDelete": "Delete Item",
   "SIMPLE.ItemNew": "New Item",
+  "SIMPLE.AttributeNew": "New Attribute",
+  "SIMPLE.DefectNew": "New Defect",
+
 
   "SIMPLE.NotifyInitFormulaUpdated": "Initiative formula was updated to",
   "SIMPLE.NotifyInitFormulaInvalid": "Initiative formula was invalid",
@@ -24,6 +27,10 @@
   "SIMPLE.DefineTemplate": "Define as Template",
   "SIMPLE.UnsetTemplate": "Unset Template",
   "SIMPLE.NoTemplate": "No Template",
+  "SIMPLE.Character": "Character",
+  "SIMPLE.ItemTemplate": "Item",
+  "SIMPLE.AttributeTemplate": "Attribute",
+  "SIMPLE.DefectTemplate": "Defect",
 
   "SIMPLE.AttributeKey": "Attribute Key",
   "SIMPLE.AttributeValue": "Value",
