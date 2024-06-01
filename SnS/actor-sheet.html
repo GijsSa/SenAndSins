@@ -28,7 +28,7 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="attributes">General</a>
+        <a class="item" data-tab="attributes">General</a
         <a class="items" data-tab="items">Items</a>
         <a class="item" data-tab="description">Description</a>
     </nav>
@@ -143,6 +143,7 @@
                                 {{/each}}
                         </ol>
                     </div>
+
 				</div>
             </div>
         </div>
@@ -151,6 +152,7 @@
         <div class="tab items" data-group="primary" data-tab="items">
             <ol class="item-list">
                 {{#each gear as |item id|}}
+
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                     <h4 class="item-name">{{item.name}}</h4>
@@ -164,6 +166,7 @@
             </ol>
             <p>
                 <a class="item-control" title="{{ localize "SIMPLE.ItemCreate" }}" data-action="createItem"><i class="fas fa-plus"></i> {{ localize "SIMPLE.ItemCreate" }}</a>
+
             </p>
         </div>
 
@@ -188,5 +191,4 @@
           });
         }
         </script>
-        
 </form>

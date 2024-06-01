@@ -11,6 +11,7 @@
   "SIMPLE.AttributeNew": "New Attribute",
   "SIMPLE.DefectNew": "New Defect",
 
+
   "SIMPLE.NotifyInitFormulaUpdated": "Initiative formula was updated to",
   "SIMPLE.NotifyInitFormulaInvalid": "Initiative formula was invalid",
   "SIMPLE.NotifyGroupDuplicate": "Attribute group already exists.",

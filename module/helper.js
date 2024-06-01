@@ -43,7 +43,7 @@ export class EntitySheetHelper {
       });
     }
 
-    // Sort the remaining attributes attributes.
+    // Sort the remaining attributes a
     Object.keys(data.system.attributes).filter(a => !groupKeys.includes(a)).sort((a, b) => a.localeCompare(b)).forEach(key => {
       data.system.ungroupedAttributes[key] = data.system.attributes[key];
     });

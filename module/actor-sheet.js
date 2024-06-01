@@ -84,9 +84,6 @@ export class SimpleActorSheet extends ActorSheet {
       }, false);
     });
   }
-
-  
-
   /* -------------------------------------------- */
 
   /**
@@ -102,7 +99,7 @@ export class SimpleActorSheet extends ActorSheet {
     const li = button.closest(".item");
     const item = this.actor.items.get(li?.dataset.itemId);
 
-    // Handle different actions
+    // Handle different 
     let cls;
     switch ( button.dataset.action ) {
       case "createItem":
@@ -137,5 +134,15 @@ export class SimpleActorSheet extends ActorSheet {
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       flavor: `<h2>${item.name}</h2><h3>${button.text()}</h3>`
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _getSubmitData(updateData) {
+    let formData = super._getSubmitData(updateData);
+    formData = EntitySheetHelper.updateAttributes(formData, this.object);
+    formData = EntitySheetHelper.updateGroups(formData, this.object);
+    return formData;
   }
 }
