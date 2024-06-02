@@ -47,13 +47,14 @@ export class SimpleActorSheet extends ActorSheet {
   }
 
   /** @inheritdoc */
-  getData() {
+  async getData() {
     const context = super.getData();
     EntitySheetHelper.getAttributeData(context.data);
     this._prepareItems(context);
     context.shorthand = !!game.settings.get("senandsins", "macroShorthand");
     context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
+    context.enrichedBiography = await TextEditor.enrichHTML(this.object.system.biography);
     return context;
   }
 
@@ -134,15 +135,5 @@ export class SimpleActorSheet extends ActorSheet {
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       flavor: `<h2>${item.name}</h2><h3>${button.text()}</h3>`
     });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  _getSubmitData(updateData) {
-    let formData = super._getSubmitData(updateData);
-    formData = EntitySheetHelper.updateAttributes(formData, this.object);
-    formData = EntitySheetHelper.updateGroups(formData, this.object);
-    return formData;
   }
 }

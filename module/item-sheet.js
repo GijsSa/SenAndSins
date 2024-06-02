@@ -54,16 +54,6 @@ export class SimpleItemSheet extends ItemSheet {
     });
   }
 
-  /* -------------------------------------------- */
-
-  /** @override */
-  _getSubmitData(updateData) {
-    let formData = super._getSubmitData(updateData);
-    formData = EntitySheetHelper.updateAttributes(formData, this.object);
-    formData = EntitySheetHelper.updateGroups(formData, this.object);
-    return formData;
-  }
-
   get template(){
     
     const path = 'systems/senandsins/SnS/items';

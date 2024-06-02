@@ -45,7 +45,40 @@
           "defenceCombatValue":{
             "main":0
           }
-       }
+       },
+       "description":{
+          "eyes":{
+            "main": ""
+          },
+          "hair":{
+            "main": ""
+          },
+          "gender":{
+            "main": ""
+          },
+          "age":{
+            "main": 0
+          }, 
+          "ideals":{
+            "main": ""
+          },
+          "traits":{
+            "main": ""
+          },
+          "goals":{
+            "main": ""
+          },
+          "appearance":{
+            "main": ""
+          },
+          "flaws":{
+            "main": ""
+          },
+          "connections":{
+            "main": ""
+          }
+       },
+       "biography": ""
     }
   },
   "Item": {

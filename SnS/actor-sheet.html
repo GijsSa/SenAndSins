@@ -172,8 +172,55 @@
 
         {{!-- Biography Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            {{editor enrichedBiography target="system.biography" button=true editable=editable}}
-        </div>
+            <div class="top-div">
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Eyes:</span>
+                    <input class="valueInput" type="text" name="system.description.eyes.main" value="{{systemData.description.eyes.main}}" placeholder="eyes"/>
+                    
+                </dive>
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Hair:</span>
+                    <input class="valueInput" type="text" name="system.description.hair.main" value="{{systemData.description.hair.main}}" placeholder="hair"/>
+                    
+                </dive>
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Gender:</span>
+                    <input class="valueInput" type="text" name="system.description.gender.main" value="{{systemData.description.gender.main}}" placeholder="gender"/>
+                </dive>
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Age:</span>
+                    <input class="valueInput" type="number" name="system.description.age.main" value="{{systemData.description.age.main}}" placeholder="0"/>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Ideals</span>
+                    <textarea class="valueInput" name="system.description.ideals.main">{{systemData.description.ideals.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Personality Traits</span>
+                    <textarea class="valueInput" name="system.description.traits.main">{{systemData.description.traits.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Goals</span>
+                    <textarea class="valueInput" name="system.description.goals.main">{{systemData.description.goals.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Appearance</span>
+                    <textarea class="valueInput" name="system.description.appearance.main">{{systemData.description.appearance.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Flaws</span>
+                    <textarea class="valueInput" name="system.description.flaws.main">{{systemData.description.flaws.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Connections</span>
+                    <textarea class="valueInput" name="system.description.connections.main">{{systemData.description.connections.main}}</textarea>
+                </dive>
+            </div>
+            <div class="bio-div">
+                <span class="resourceSpan">Biography</span>
+                {{editor enrichedBiography target="system.biography" button=true editable=editable}}
+            </div>
+        </div>        
     </section>
     <script>
         var coll = document.getElementsByClassName("collapsible");
