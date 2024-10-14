@@ -49,7 +49,6 @@ export class SimpleActorSheet extends ActorSheet {
   /** @inheritdoc */
   async getData() {
     const context = super.getData();
-    EntitySheetHelper.getAttributeData(context.data);
     this._prepareItems(context);
     context.shorthand = !!game.settings.get("senandsins", "macroShorthand");
     context.systemData = context.data.system;

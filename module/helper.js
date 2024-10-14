@@ -259,84 +259,6 @@ export class EntitySheetHelper {
     }
     return true;
   }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Create new attributes.
-   * @param {MouseEvent} event    The originating left click event
-   * @param {Object} app          The form application object.
-   * @private
-   */
-  static async createAttribute(event, app) {
-    const a = event.currentTarget;
-    const group = a.dataset.group;
-    let dtype = a.dataset.dtype;
-    const attrs = app.object.system.attributes;
-    const groups = app.object.system.groups;
-    const form = app.form;
-
-    // Determine the new attribute key for ungrouped attributes.
-    let objKeys = Object.keys(attrs).filter(k => !Object.keys(groups).includes(k));
-    let nk = Object.keys(attrs).length + 1;
-    let newValue = `attr${nk}`;
-    let newKey = document.createElement("div");
-    while ( objKeys.includes(newValue) ) {
-      ++nk;
-      newValue = `attr${nk}`;
-    }
-
-    // Build options for construction HTML inputs.
-    let htmlItems = {
-      key: {
-        type: "text",
-        value: newValue
-      }
-    };
-
-    // Grouped attributes.
-    if ( group ) {
-      objKeys = attrs[group] ? Object.keys(attrs[group]) : [];
-      nk = objKeys.length + 1;
-      newValue = `attr${nk}`;
-      while ( objKeys.includes(newValue) ) {
-        ++nk;
-        newValue =  `attr${nk}`;
-      }
-
-      // Update the HTML options used to build the new input.
-      htmlItems.key.value = newValue;
-      htmlItems.group = {
-        type: "hidden",
-        value: group
-      };
-      htmlItems.dtype = {
-        type: "hidden",
-        value: dtype
-      };
-    }
-    // Ungrouped attributes.
-    else {
-      // Choose a default dtype based on the last attribute, fall back to "String".
-      if (!dtype) {
-        let lastAttr = document.querySelector('.attributes > .attributes-group .attribute:last-child .attribute-dtype')?.value;
-        dtype = lastAttr ? lastAttr : "String";
-        htmlItems.dtype = {
-          type: "hidden",
-          value: dtype
-        };
-      }
-    }
-
-    // Build the form elements used to create the new grouped attribute.
-    newKey.innerHTML = EntitySheetHelper.getAttributeHtml(htmlItems, nk, group);
-
-    // Append the form element and submit the form.
-    newKey = newKey.children[0];
-    form.appendChild(newKey);
-    await app._onSubmit(event);
-  }
-
   /**
    * Delete an attribute.
    * @param {MouseEvent} event    The originating left click event
@@ -350,178 +272,6 @@ export class EntitySheetHelper {
       li.parentElement.removeChild(li);
       await app._onSubmit(event);
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Create new attribute groups.
-   * @param {MouseEvent} event    The originating left click event
-   * @param {Object} app          The form application object.
-   * @private
-   */
-  static async createAttributeGroup(event, app) {
-    const a = event.currentTarget;
-    const form = app.form;
-    let newValue = $(a).siblings('.group-prefix').val();
-    // Verify the new group key is valid, and use it to create the group.
-    if ( newValue.length > 0 && EntitySheetHelper.validateGroup(newValue, app.object) ) {
-      let newKey = document.createElement("div");
-      newKey.innerHTML = `<input type="text" name="system.groups.${newValue}.key" value="${newValue}"/>`;
-      // Append the form element and submit the form.
-      newKey = newKey.children[0];
-      form.appendChild(newKey);
-      await app._onSubmit(event);
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Delete an attribute group.
-   * @param {MouseEvent} event    The originating left click event
-   * @param {Object} app          The form application object.
-   * @private
-   */
-  static async deleteAttributeGroup(event, app) {
-    const a = event.currentTarget;
-    let groupHeader = a.closest(".group-header");
-    let groupContainer = groupHeader.closest(".group");
-    let group = $(groupHeader).find('.group-key');
-    // Create a dialog to confirm group deletion.
-    new Dialog({
-      title: game.i18n.localize("SIMPLE.DeleteGroup"),
-      content: `${game.i18n.localize("SIMPLE.DeleteGroupContent")} <strong>${group.val()}</strong>`,
-      buttons: {
-        confirm: {
-          icon: '<i class="fas fa-trash"></i>',
-          label: game.i18n.localize("Yes"),
-          callback: async () => {
-            groupContainer.parentElement.removeChild(groupContainer);
-            await app._onSubmit(event);
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize("No"),
-        }
-      }
-    }).render(true);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Update attributes when updating an actor object.
-   * @param {object} formData       The form data object to modify keys and values for.
-   * @param {Document} document     The Actor or Item document within which attributes are being updated
-   * @returns {object}              The updated formData object.
-   */
-  static updateAttributes(formData, document) {
-    let groupKeys = [];
-
-    // Handle the free-form attributes list
-    const formAttrs = foundry.utils.expandObject(formData)?.system?.attributes || {};
-    const attributes = Object.values(formAttrs).reduce((obj, v) => {
-      let attrs = [];
-      let group = null;
-      // Handle attribute keys for grouped attributes.
-      if ( !v["key"] ) {
-        attrs = Object.keys(v);
-        attrs.forEach(attrKey => {
-          group = v[attrKey]['group'];
-          groupKeys.push(group);
-          let attr = v[attrKey];
-          let k = v[attrKey]["key"] ? v[attrKey]["key"].trim() : attrKey.trim();
-          if ( /[\s\.]/.test(k) )  return ui.notifications.error("Attribute keys may not contain spaces or periods");
-          delete attr["key"];
-          // Add the new attribute if it's grouped, but we need to build the nested structure first.
-          if ( !obj[group] ) {
-            obj[group] = {};
-          }
-          obj[group][k] = attr;
-        });
-      }
-      // Handle attribute keys for ungrouped attributes.
-      else {
-        let k = v["key"].trim();
-        if ( /[\s\.]/.test(k) )  return ui.notifications.error("Attribute keys may not contain spaces or periods");
-        delete v["key"];
-        // Add the new attribute only if it's ungrouped.
-        if ( !group ) {
-          obj[k] = v;
-        }
-      }
-      return obj;
-    }, {});
-
-    // Remove attributes which are no longer used
-    for ( let k of Object.keys(document.system.attributes) ) {
-      if ( !attributes.hasOwnProperty(k) ) attributes[`-=${k}`] = null;
-    }
-
-    // Remove grouped attributes which are no longer used.
-    for ( let group of groupKeys) {
-      if ( document.system.attributes[group] ) {
-        for ( let k of Object.keys(document.system.attributes[group]) ) {
-          if ( !attributes[group].hasOwnProperty(k) ) attributes[group][`-=${k}`] = null;
-        }
-      }
-    }
-
-    // Re-combine formData
-    formData = Object.entries(formData).filter(e => !e[0].startsWith("system.attributes")).reduce((obj, e) => {
-      obj[e[0]] = e[1];
-      return obj;
-    }, {_id: document.id, "system.attributes": attributes});
-
-    return formData;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Update attribute groups when updating an actor object.
-   * @param {object} formData       The form data object to modify keys and values for.
-   * @param {Document} document     The Actor or Item document within which attributes are being updated
-   * @returns {object}              The updated formData object.
-   */
-  static updateGroups(formData, document) {
-    // Handle the free-form groups list
-    const formGroups = expandObject(formData).system.groups || {};
-    const documentGroups = Object.keys(document.system.groups || {});
-    const groups = Object.values(formGroups).reduce((obj, v) => {
-      // If there are duplicate groups, collapse them.
-      if ( Array.isArray(v["key"]) ) {
-        v["key"] = v["key"][0];
-      }
-      // Trim and clean up.
-      let k = v["key"].trim();
-      // Validate groups.
-      let isValidGroup = true;
-      // Skip validation for existing/duplicate groups since they're collapsed above.
-      if ( !documentGroups.includes(k) ) {
-        isValidGroup = this.validateGroup(k, document);
-      }
-      // Delete the key and add the group to the reducer if valid.
-      delete v["key"];
-      if (isValidGroup)  obj[k] = v;
-      return obj;
-    }, {});
-
-    // Remove groups which are no longer used
-    if (groups) {
-      for ( let k of Object.keys(document.system.groups)) {
-        if ( !groups.hasOwnProperty(k) ) groups[`-=${k}`] = null;
-      }
-    }
-
-    // Re-combine formData
-    formData = Object.entries(formData).filter(e => !e[0].startsWith("system.groups")).reduce((obj, e) => {
-      obj[e[0]] = e[1];
-      return obj;
-    }, {_id: document.id, "system.groups": groups});
-    return formData;
   }
 
   /* -------------------------------------------- */
@@ -549,7 +299,7 @@ export class EntitySheetHelper {
       break;
         default:
         types = {
-        "base": game.i18n.localize("SIMPLE.Character")
+        "character": game.i18n.localize("SIMPLE.Character")
         }
         break;
     }
@@ -613,7 +363,7 @@ export class EntitySheetHelper {
       if ( parts.pop() !== "value" ) continue;
       const current = foundry.utils.getProperty(attrs, parts.join("."));
       if ( current?.dtype !== "Resource" ) continue;
-      foundry.utils.setProperty(attrs, attr, Math.clamped(value, current.min || 0, current.max || 0));
+      foundry.utils.setProperty(attrs, attr, Math.clamped(value, current.max || 0));
     }
   }
 }

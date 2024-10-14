@@ -6,9 +6,9 @@ export class SimpleTokenDocument extends TokenDocument {
   /** @inheritdoc */
   getBarAttribute(barName, {alternative}={}) {
     const data = super.getBarAttribute(barName, {alternative});
-    const attr = alternative || this.data[barName]?.attribute;
+    const attr = alternative || this[barName]?.attribute;
     if ( !data || !attr || !this.actor ) return data;
-    const current = foundry.utils.getProperty(this.actor.data.data, attr);
+    const current = foundry.utils.getProperty(this.actor.system, attr);
     if ( current?.dtype === "Resource" ) data.min = parseInt(current.min || 0);
     data.editable = true;
     return data;

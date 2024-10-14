@@ -65,15 +65,15 @@ export class SimpleItemSheet extends ItemSheet {
     switch(this.item.type){
       case "item":
         {
-          return `${path}/item-${this.item.type}-sheet.html`;
+          return `${path}/${this.item.type}-sheet.html`;
         }
         case "defect":
           case "attribute":
             {
-              return `${path}/item-attribute-sheet.html`;
+              return `${path}/attribute-sheet.html`;
             }
     }
 
-    return `${path}/item-${this.item.type}-sheet.html`;
+    return `${path}/${this.item.type}-sheet.html`;
   }
 }

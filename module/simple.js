@@ -27,7 +27,7 @@ Hooks.once("init", async function() {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d20",
+    formula: "2d6",
     decimals: 2
   };
 
@@ -65,7 +65,7 @@ Hooks.once("init", async function() {
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
     type: String,
-    default: "1d20",
+    default: "2d6",
     config: true,
     onChange: formula => _simpleUpdateInit(formula, true)
   });

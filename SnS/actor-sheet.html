@@ -35,30 +35,31 @@
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        <div class="armorcombat grid grid-4col">
-            <div class="combatResource">
-                <span>AR: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.armourRating.main" value="{{systemData.stats.armourRating.main}}" placeholder="0"/>
-            </div>
-            
-            <div class="combatResource">
-                <span>CV: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.combatValue.main" value="{{systemData.stats.combatValue.main}}" placeholder="0"/>
-            </div>
-            
-            <div class="combatResource">
-                <span>ACV: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.attackCombatValue.main" value="{{systemData.stats.attackCombatValue.main}}" placeholder="0"/>
-            </div>
-            
-            <div class="combatResource">
-                <span>DCV: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.defenceCombatValue.main" value="{{systemData.stats.defenceCombatValue.main}}" placeholder="0"/>
-            </div>
-        </div>
+        
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <div class="armorcombat grid grid-4col">
+                <div class="combatResource">
+                    <span>AR: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.armourRating.main" value="{{systemData.stats.armourRating.main}}" placeholder="0"/>
+                </div>
+                
+                <div class="combatResource">
+                    <span>CV: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.combatValue.main" value="{{systemData.stats.combatValue.main}}" placeholder="0"/>
+                </div>
+                
+                <div class="combatResource">
+                    <span>ACV: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.attackCombatValue.main" value="{{systemData.stats.attackCombatValue.main}}" placeholder="0"/>
+                </div>
+                
+                <div class="combatResource">
+                    <span>DCV: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.defenceCombatValue.main" value="{{systemData.stats.defenceCombatValue.main}}" placeholder="0"/>
+                </div>
+            </div>
 			<div class="flexstats">
 				<div class="stats">
 					<div class="statblock">
@@ -74,6 +75,16 @@
 					<div class="statblock">
 						<p class="attribute-top w-100 text-center mb-1">Soul</p>
 						<input class="stat-value" name="system.soul.main" type="text" value="{{systemData.soul.main}}" placeholder="0"
+                        data-dtype="Number" />
+					</div>
+                    <div class="statblock">
+						<p class="attribute-top w-100 text-center mb-1">CharP</p>
+						<input class="stat-value" name="system.points.main" type="text" value="{{systemData.points.main}}" placeholder="0"
+                        data-dtype="Number" />
+					</div>
+                    <div class="statblock">
+						<p class="attribute-top w-100 text-center mb-1">SavedP</p>
+						<input class="stat-value" name="system.savedpoints.main" type="text" value="{{systemData.savedpoints.main}}" placeholder="0"
                         data-dtype="Number" />
 					</div>
 				</div>
@@ -94,7 +105,7 @@
                         <ol class="attributes-list">
                                 {{#each charAtrributes as |SimpleItem id|}}
                                 <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}">
-                                    <input class="item-small" type="number" name="SimpleItem.system.level.main" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
+                                    <input class="item-small" type="text" name="SimpleItem.system.level.main" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
                                     <input class="item-small" type="number" name="SimpleItem.system.cost.main" value="{{SimpleItem.system.cost.main}}" placeholder="0" disabled> </input>
                                     <input class="item-small" type="number" name="SimpleItem.system.flux.main" value="{{SimpleItem.system.flux.main}}" placeholder="0" disabled></input>
                                     <input class="item-big" name="SimpleItem.system.name" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
@@ -104,7 +115,7 @@
                                     </div>
                                 </li>
                                 <div class="span-collabsible">
-                                    <span name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
+                                    <span style="white-space: pre-line" name="SimpleItem.system.description">{{SimpleItem.system.description}}</span>
                                 </div>
                                 {{/each}}
                         </ol>
@@ -138,7 +149,7 @@
                                         </div>
                                     </li>
                                     <div class="span-collabsible">
-                                        <span name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
+                                        <span style="white-space: pre-line" name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
                                     </div>
                                 {{/each}}
                         </ol>
