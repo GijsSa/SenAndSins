@@ -36,7 +36,7 @@ export class SimpleActor extends Actor {
   getRollData() {
 
     // Copy the actor's system data
-    const data = this.toObject(false).data;
+    const data = this.toObject(false).system;
     return data;
   }
 

@@ -41,6 +41,10 @@ export class SimpleActorSheet extends ActorSheet {
       }
     }
 
+    gear.sort();
+    attributes.sort();
+    defects.sort();
+
     context.gear = gear;
     context.charAtrributes = attributes;
     context.charDefects = defects;
@@ -74,7 +78,6 @@ export class SimpleActorSheet extends ActorSheet {
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
-
     // Add draggable for Macro creation
     html.find(".attributes a.attribute-roll").each((i, a) => {
       a.setAttribute("draggable", true);
