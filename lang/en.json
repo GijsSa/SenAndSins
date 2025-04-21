@@ -6,10 +6,13 @@
 
   "SIMPLE.ItemCreate": "Create Item",
   "SIMPLE.ItemEdit": "Edit Item",
+  "SIMPLE.ActorSettings": "Settings",
   "SIMPLE.ItemDelete": "Delete Item",
   "SIMPLE.ItemNew": "New Item",
   "SIMPLE.AttributeNew": "New Attribute",
   "SIMPLE.DefectNew": "New Defect",
+
+  "SIMPLE.RollTitle": "Roll",
 
 
   "SIMPLE.NotifyInitFormulaUpdated": "Initiative formula was updated to",

@@ -82,7 +82,15 @@
             "main": ""
           }
        },
-       "biography": ""
+       "biography": "",
+       "peopleoi":"",
+       "pointoi":"",
+       "notes":"",
+       "settings":{
+          "additionalInit":{
+            "main":0
+          }
+       }
     }
   },
   "Item": {

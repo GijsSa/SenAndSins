@@ -8,6 +8,8 @@ import { SimpleActor } from "./actor.js";
 import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
+import { SimpleActorRollSheet } from "./actor-roll-sheet.js";
+import { SimpleActorSettingsSheet } from "./actor-settings-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createsenandsinsMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
@@ -46,6 +48,8 @@ Hooks.once("init", async function() {
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("senandsins", SimpleActorSheet, { makeDefault: true });
+  Actors.registerSheet("senandsins", SimpleActorSettingsSheet, { makeDefault: false });
+  Actors.registerSheet("senandsins", SimpleActorRollSheet, { makeDefault: false });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("senandsins", SimpleItemSheet, { makeDefault: true });
 
@@ -65,7 +69,7 @@ Hooks.once("init", async function() {
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
     type: String,
-    default: "2d6",
+    default: "2d6+@stats.attackCombatValue.main+@settings.additionalInit.main",
     config: true,
     onChange: formula => _simpleUpdateInit(formula, true)
   });

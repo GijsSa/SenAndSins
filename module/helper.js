@@ -292,6 +292,7 @@ export class EntitySheetHelper {
     const templates = collection.filter(a => a.getFlag("senandsins", "isTemplate"));
     let types = [];
     switch(documentName){
+
       case "Item":
         types = {
           "item": game.i18n.localize("SIMPLE.ItemTemplate")
