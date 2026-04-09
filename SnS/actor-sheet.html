@@ -20,8 +20,12 @@
                     <input class="valueInput" type="number" name="system.power.value" value="{{systemData.power.value}}"/>
                     <span class="resourceSpan"> / </span>
                     <input class="valueInput" type="number" name="system.power.max" value="{{systemData.power.max}}"/>
+
                 </div>
-                
+                <div class="actor-button-layout">
+                    <a class="roll-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="edit"><i class="fas fa-dice-d6"></i></a>
+                    <a class="settings-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="edit"><i class="fas fa-cog"></i></a>
+                </div>
             </div>
         </div>
     </header>
@@ -29,36 +33,38 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="attributes">General</a>
-        <a class="items" data-tab="items">Items</a>
-        <a class="item" data-tab="description">Description</a>
+        <a class="itemsleft" data-tab="items">Items</a>
+        <a class="itemsleft" data-tab="description">Description</a>
+        <a class="itemsleft" data-tab="notes">Notes</a>
     </nav>
 
     {{!-- Sheet Body --}}
-    <section class="sheet-body">
-        <div class="armorcombat grid grid-4col">
-            <div class="combatResource">
-                <span>AR: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.armourRating.main" value="{{systemData.stats.armourRating.main}}" placeholder="0"/>
-            </div>
-            
-            <div class="combatResource">
-                <span>CV: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.combatValue.main" value="{{systemData.stats.combatValue.main}}" placeholder="0"/>
-            </div>
-            
-            <div class="combatResource">
-                <span>ACV: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.attackCombatValue.main" value="{{systemData.stats.attackCombatValue.main}}" placeholder="0"/>
-            </div>
-            
-            <div class="combatResource">
-                <span>DCV: </span>
-                <input class="resourceValueInput" type="number" name="system.stats.defenceCombatValue.main" value="{{systemData.stats.defenceCombatValue.main}}" placeholder="0"/>
-            </div>
-        </div>
+    <div class="sheet-body">
+        
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <div class="armorcombat grid grid-4col">
+                <div class="combatResource">
+                    <span>AR: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.armourRating.main" value="{{systemData.stats.armourRating.main}}" placeholder="0"/>
+                </div>
+                
+                <div class="combatResource">
+                    <span>CV: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.combatValue.main" value="{{systemData.stats.combatValue.main}}" placeholder="0"/>
+                </div>
+                
+                <div class="combatResource">
+                    <span>ACV: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.attackCombatValue.main" value="{{systemData.stats.attackCombatValue.main}}" placeholder="0"/>
+                </div>
+                
+                <div class="combatResource">
+                    <span>DCV: </span>
+                    <input class="resourceValueInput" type="number" name="system.stats.defenceCombatValue.main" value="{{systemData.stats.defenceCombatValue.main}}" placeholder="0"/>
+                </div>
+            </div>
 			<div class="flexstats">
 				<div class="stats">
 					<div class="statblock">
@@ -74,6 +80,16 @@
 					<div class="statblock">
 						<p class="attribute-top w-100 text-center mb-1">Soul</p>
 						<input class="stat-value" name="system.soul.main" type="text" value="{{systemData.soul.main}}" placeholder="0"
+                        data-dtype="Number" />
+					</div>
+                    <div class="statblock">
+						<p class="attribute-top w-100 text-center mb-1">CharP</p>
+						<input class="stat-value" name="system.points.main" type="text" value="{{systemData.points.main}}" placeholder="0"
+                        data-dtype="Number" />
+					</div>
+                    <div class="statblock">
+						<p class="attribute-top w-100 text-center mb-1">SavedP</p>
+						<input class="stat-value" name="system.savedpoints.main" type="text" value="{{systemData.savedpoints.main}}" placeholder="0"
                         data-dtype="Number" />
 					</div>
 				</div>
@@ -94,7 +110,7 @@
                         <ol class="attributes-list">
                                 {{#each charAtrributes as |SimpleItem id|}}
                                 <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}">
-                                    <input class="item-small" type="number" name="SimpleItem.system.level.main" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
+                                    <input class="item-small" type="text" name="SimpleItem.system.level.main" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
                                     <input class="item-small" type="number" name="SimpleItem.system.cost.main" value="{{SimpleItem.system.cost.main}}" placeholder="0" disabled> </input>
                                     <input class="item-small" type="number" name="SimpleItem.system.flux.main" value="{{SimpleItem.system.flux.main}}" placeholder="0" disabled></input>
                                     <input class="item-big" name="SimpleItem.system.name" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
@@ -104,7 +120,7 @@
                                     </div>
                                 </li>
                                 <div class="span-collabsible">
-                                    <span name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
+                                    <span style="white-space: pre-line" name="SimpleItem.system.description">{{SimpleItem.system.description}}</span>
                                 </div>
                                 {{/each}}
                         </ol>
@@ -138,11 +154,12 @@
                                         </div>
                                     </li>
                                     <div class="span-collabsible">
-                                        <span name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
+                                        <span style="white-space: pre-line" name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
                                     </div>
                                 {{/each}}
                         </ol>
                     </div>
+
 				</div>
             </div>
         </div>
@@ -151,6 +168,7 @@
         <div class="tab items" data-group="primary" data-tab="items">
             <ol class="item-list">
                 {{#each gear as |item id|}}
+
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                     <h4 class="item-name">{{item.name}}</h4>
@@ -164,14 +182,86 @@
             </ol>
             <p>
                 <a class="item-control" title="{{ localize "SIMPLE.ItemCreate" }}" data-action="createItem"><i class="fas fa-plus"></i> {{ localize "SIMPLE.ItemCreate" }}</a>
+
             </p>
         </div>
 
         {{!-- Biography Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            {{editor enrichedBiography target="system.biography" button=true editable=editable}}
+            <div class="top-div">
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Eyes:</span>
+                    <input class="valueInput" type="text" name="system.description.eyes.main" value="{{systemData.description.eyes.main}}" placeholder="eyes"/>
+                    
+                </dive>
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Hair:</span>
+                    <input class="valueInput" type="text" name="system.description.hair.main" value="{{systemData.description.hair.main}}" placeholder="hair"/>
+                    
+                </dive>
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Gender:</span>
+                    <input class="valueInput" type="text" name="system.description.gender.main" value="{{systemData.description.gender.main}}" placeholder="gender"/>
+                </dive>
+                <dive class="character-appearance">
+                    <span class="resourceSpan">Age:</span>
+                    <input class="valueInput" type="number" name="system.description.age.main" value="{{systemData.description.age.main}}" placeholder="0"/>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Ideals</span>
+                    <textarea class="valueInput" name="system.description.ideals.main">{{systemData.description.ideals.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Personality Traits</span>
+                    <textarea class="valueInput" name="system.description.traits.main">{{systemData.description.traits.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Goals</span>
+                    <textarea class="valueInput" name="system.description.goals.main">{{systemData.description.goals.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Appearance</span>
+                    <textarea class="valueInput" name="system.description.appearance.main">{{systemData.description.appearance.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Flaws</span>
+                    <textarea class="valueInput" name="system.description.flaws.main">{{systemData.description.flaws.main}}</textarea>
+                </dive>
+                <dive class="character-trait">
+                    <span class="resourceSpan">Connections</span>
+                    <textarea class="valueInput" name="system.description.connections.main">{{systemData.description.connections.main}}</textarea>
+                </dive>
+            </div>
+            <div class="bio-div">
+                <span class="resourceSpan">Biography</span>
+                {{editor enrichedBiography target="system.biography" button=true editable=editable }}
+            </div>
+        </div>  
+        
+        {{!-- Notes Tab --}}
+        <div class="tab notes" data-group="primary" data-tab="notes">
+            <div class="bio-spacing-flex">
+                <div class="bio-spacing-block">
+                    <div class="half-bio-div">
+                        <span class="resourceSpan">Points of interest</span>
+                        {{editor enrichedPointOI target="system.pointoi" button=true editable=editable}}
+                    </div>
+                    <div class="half-bio-div">
+                        <span class="resourceSpan">People of interest</span>
+                        {{editor enrichedPeopleOI target="system.peopleoi" button=true editable=editable}}
+                    </div>
+                </div>
+                <div class="bio-spacing-block">
+                    <div class="half-bio-div">
+                        <span class="resourceSpan">Notes</span>
+                        {{editor enrichedNotes target="system.notes" button=true editable=editable}}
+                    </div>  
+                </div>
+
+            </div>
         </div>
-    </section>
+        
+    </div>
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;
@@ -188,5 +278,4 @@
           });
         }
         </script>
-        
 </form>

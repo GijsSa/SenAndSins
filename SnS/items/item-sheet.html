@@ -1,0 +1,48 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
+        <div class="header-fields">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
+            </h1>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="attributes">Details</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        <div class="tab" data-group="primary" data-tab="description">
+            {{editor enrichedBiography target="system.description" button=true editable=editable}}
+        </div>
+
+        {{!-- Attributes Tab --}}
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <dive class="item-resource">
+                <span class="resourceSpan">Rarity:</span>
+                <input class="valueInput" type="text" name="system.rarity" value="{{systemData.rarity}}" placeholder="rarity"/>
+                
+            </dive>
+            <dive class="item-resource">
+                <span class="resourceSpan">Price:</span>
+                <input class="valueInput" type="number" name="system.price" value="{{systemData.price}}" placeholder="0"/>
+                
+            </dive>
+            <dive class="item-resource">
+                <span class="resourceSpan">Quantity:</span>
+                <input class="valueInput" type="number" name="system.quantity" value="{{systemData.quantity}}" placeholder="0"/>
+                
+            </dive>
+            <dive class="item-resource">
+                <span class="resourceSpan">Weight:</span>
+                <input class="valueInput" type="number" name="system.weight" value="{{systemData.weight}}" placeholder="0"/>
+            </dive>
+        </div>
+    </section>
+</form>
