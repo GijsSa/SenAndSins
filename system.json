@@ -2,10 +2,10 @@
     "id": "senandsins",
     "title": "Sen and Sin",
     "description": "A simple system for our pal",
-    "version": "0.6.2",
+    "version": "0.6.0",
     "compatibility": {
       "minimum": "12",
-      "verified": "14",
+      "verified": "12",
       "maximum": "16"
     },
     "authors": [
@@ -39,5 +39,5 @@
     "secondaryTokenAttribute": "power",
     "url": "https://github.com/GijsSa/SenAndSins",
     "manifest": "https://raw.githubusercontent.com/GijsSa/SenAndSins/refs/heads/main/system.json",
-    "download": "https://github.com/GijsSa/SenAndSins/archive/refs/senandsins/source code.zip"
+    "download": "https://github.com/GijsSa/SenAndSins/archive/refs/senandsins/senandsins.zip"
   }
