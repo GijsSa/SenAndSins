@@ -2,7 +2,7 @@
     "id": "senandsins",
     "title": "Sen and Sin",
     "description": "A simple system for our pal",
-    "version": "0.3.16",
+    "version": "0.6.1",
     "compatibility": {
       "minimum": "10",
       "verified": "12",
@@ -30,11 +30,12 @@
         "path": "lang/en.json"
       }
     ],
-    "gridDistance": 10,
-    "gridUnits": "m",
+    "grid":
+    {
+      "distance": 10,
+      "units": "m"
+    },
     "primaryTokenAttribute": "health",
     "secondaryTokenAttribute": "power",
-    "url": "https://github.com/GijsSa/SenAndSins",
-    "manifest": "TODO.json",
-    "download": "TODO.zip"
+    "url": "https://github.com/GijsSa/SenAndSins"
   }

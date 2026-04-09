@@ -1,5 +1,7 @@
 import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
+import { SimpleActorSettingsSheet } from "./actor-settings-sheet.js";
+import { SimpleActorRollSheet } from "./actor-roll-sheet.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -13,13 +15,12 @@ export class SimpleActorSheet extends ActorSheet {
       classes: ["senandsins", "sheet", "actor"],
       template: "systems/senandsins/SnS/actor-sheet.html",
       width: 600,
-      height: 600,
+      height: 820,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
       scrollY: [".biography", ".items", ".attributes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
-
   _prepareItems(context){
     const gear = [];
     const attributes = [];
@@ -41,13 +42,23 @@ export class SimpleActorSheet extends ActorSheet {
       }
     }
 
-    gear.sort();
-    attributes.sort();
-    defects.sort();
+    gear.sort(this.compare);
+    attributes.sort(this.compare);
+    defects.sort(this.compare);
 
     context.gear = gear;
     context.charAtrributes = attributes;
     context.charDefects = defects;
+  }
+
+  compare( a, b ) {
+    if ( a.name < b.name ){
+      return -1;
+    }
+    if ( a.name > b.name ){
+      return 1;
+    }
+    return 0;
   }
 
   /** @inheritdoc */
@@ -58,6 +69,9 @@ export class SimpleActorSheet extends ActorSheet {
     context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
     context.enrichedBiography = await TextEditor.enrichHTML(this.object.system.biography);
+    context.enrichedPeopleOI = await TextEditor.enrichHTML(this.object.system.peopleoi);
+    context.enrichedPointOI = await TextEditor.enrichHTML(this.object.system.pointoi);
+    context.enrichedNotes = await TextEditor.enrichHTML(this.object.system.notes);
     return context;
   }
 
@@ -78,6 +92,11 @@ export class SimpleActorSheet extends ActorSheet {
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
+
+    // Settings Control
+    html.find(".settings-control").click(this._onSettingsControl.bind(this));
+    html.find(".roll-control").click(this._onRollControl.bind(this));
+  
     // Add draggable for Macro creation
     html.find(".attributes a.attribute-roll").each((i, a) => {
       a.setAttribute("draggable", true);
@@ -119,6 +138,21 @@ export class SimpleActorSheet extends ActorSheet {
       case "delete":
         return item.delete();
     }
+  }
+
+  _onSettingsControl(event){
+    event.preventDefault();
+
+    let settingSheet = new SimpleActorSettingsSheet(this.actor);
+    settingSheet?.render(true);
+  }
+
+  _onRollControl(event){
+    event.preventDefault();
+
+    let rollSheet = new SimpleActorRollSheet(this.actor);
+    rollSheet?.render(true);
+
   }
 
   /* -------------------------------------------- */

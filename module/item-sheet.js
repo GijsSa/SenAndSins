@@ -68,10 +68,10 @@ export class SimpleItemSheet extends ItemSheet {
           return `${path}/${this.item.type}-sheet.html`;
         }
         case "defect":
-          case "attribute":
-            {
-              return `${path}/attribute-sheet.html`;
-            }
+        case "attribute":
+        {
+          return `${path}/attribute-sheet.html`;
+        }
     }
 
     return `${path}/${this.item.type}-sheet.html`;

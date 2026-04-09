@@ -20,8 +20,12 @@
                     <input class="valueInput" type="number" name="system.power.value" value="{{systemData.power.value}}"/>
                     <span class="resourceSpan"> / </span>
                     <input class="valueInput" type="number" name="system.power.max" value="{{systemData.power.max}}"/>
+
                 </div>
-                
+                <div class="actor-button-layout">
+                    <a class="roll-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="edit"><i class="fas fa-dice-d6"></i></a>
+                    <a class="settings-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="edit"><i class="fas fa-cog"></i></a>
+                </div>
             </div>
         </div>
     </header>
@@ -29,12 +33,13 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="attributes">General</a>
-        <a class="items" data-tab="items">Items</a>
-        <a class="item" data-tab="description">Description</a>
+        <a class="itemsleft" data-tab="items">Items</a>
+        <a class="itemsleft" data-tab="description">Description</a>
+        <a class="itemsleft" data-tab="notes">Notes</a>
     </nav>
 
     {{!-- Sheet Body --}}
-    <section class="sheet-body">
+    <div class="sheet-body">
         
 
         {{!-- Attributes Tab --}}
@@ -229,10 +234,34 @@
             </div>
             <div class="bio-div">
                 <span class="resourceSpan">Biography</span>
-                {{editor enrichedBiography target="system.biography" button=true editable=editable}}
+                {{editor enrichedBiography target="system.biography" button=true editable=editable }}
             </div>
-        </div>        
-    </section>
+        </div>  
+        
+        {{!-- Notes Tab --}}
+        <div class="tab notes" data-group="primary" data-tab="notes">
+            <div class="bio-spacing-flex">
+                <div class="bio-spacing-block">
+                    <div class="half-bio-div">
+                        <span class="resourceSpan">Points of interest</span>
+                        {{editor enrichedPointOI target="system.pointoi" button=true editable=editable}}
+                    </div>
+                    <div class="half-bio-div">
+                        <span class="resourceSpan">People of interest</span>
+                        {{editor enrichedPeopleOI target="system.peopleoi" button=true editable=editable}}
+                    </div>
+                </div>
+                <div class="bio-spacing-block">
+                    <div class="half-bio-div">
+                        <span class="resourceSpan">Notes</span>
+                        {{editor enrichedNotes target="system.notes" button=true editable=editable}}
+                    </div>  
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;
