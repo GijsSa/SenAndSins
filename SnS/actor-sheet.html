@@ -1,281 +1,32 @@
-<form class="flexcol {{cssClass}}" autocomplete="off">
+<div class="flexcol {{cssClass}}" autocomplete="off">
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
+        <img src="{{img}}" data-action="editImage" data-field="img" alt="Portrait">
         <div class="header-fields">
             <div class="charname">
-                <input class="nameInput" name="name" type="text" value="{{data.name}}" placeholder="Name" />
-                <input class="charAtrributeInput" name="system.species.main" value="{{systemData.species.main}}" type="text" placeholder="Species"/>
-                <input class="charAtrributeInput" name="system.height.main" value="{{systemData.height.main}}" type="text" placeholder="Height"/>
+                <input class="nameInput" name="name" type="text" value="{{source.name}}" placeholder="Name" />
+                <input class="charAtrributeInput" name="system.species.main" value="{{system.species.main}}" type="text" placeholder="Species"/>
+                <input class="charAtrributeInput" name="system.height.main" value="{{system.height.main}}" type="text" placeholder="Height"/>
                 
                 <div class="resource">
                     <span class="resourceSpan">HP: </span>
-                    <input class="valueInput" type="number" name="system.health.value" value="{{systemData.health.value}}"/>
+                    <input class="valueInput" type="number" name="system.health.value" value="{{system.health.value}}"/>
                     <span class="resourceSpan"> / </span>
-                    <input class="valueInput" type="number" name="system.health.max" value="{{systemData.health.max}}"/>
+                    <input class="valueInput" type="number" name="system.health.max" value="{{system.health.max}}"/>
                 </div>
                 <div class="resource">
                     <span class="resourceSpan">EP: </span>
-                    <input class="valueInput" type="number" name="system.power.value" value="{{systemData.power.value}}"/>
+                    <input class="valueInput" type="number" name="system.power.value" value="{{system.power.value}}"/>
                     <span class="resourceSpan"> / </span>
-                    <input class="valueInput" type="number" name="system.power.max" value="{{systemData.power.max}}"/>
+                    <input class="valueInput" type="number" name="system.power.max" value="{{system.power.max}}"/>
 
                 </div>
                 <div class="actor-button-layout">
-                    <a class="roll-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="edit"><i class="fas fa-dice-d6"></i></a>
-                    <a class="settings-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="edit"><i class="fas fa-cog"></i></a>
+                    <a class="roll-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="rollControl"><i class="fas fa-dice-d6"></i></a>
+                    <a class="settings-control" title="{{ localize "SIMPLE.ActorSettings" }}" data-action="settingsControl"><i class="fas fa-cog"></i></a>
                 </div>
             </div>
         </div>
     </header>
-
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="attributes">General</a>
-        <a class="itemsleft" data-tab="items">Items</a>
-        <a class="itemsleft" data-tab="description">Description</a>
-        <a class="itemsleft" data-tab="notes">Notes</a>
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <div class="sheet-body">
-        
-
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-            <div class="armorcombat grid grid-4col">
-                <div class="combatResource">
-                    <span>AR: </span>
-                    <input class="resourceValueInput" type="number" name="system.stats.armourRating.main" value="{{systemData.stats.armourRating.main}}" placeholder="0"/>
-                </div>
-                
-                <div class="combatResource">
-                    <span>CV: </span>
-                    <input class="resourceValueInput" type="number" name="system.stats.combatValue.main" value="{{systemData.stats.combatValue.main}}" placeholder="0"/>
-                </div>
-                
-                <div class="combatResource">
-                    <span>ACV: </span>
-                    <input class="resourceValueInput" type="number" name="system.stats.attackCombatValue.main" value="{{systemData.stats.attackCombatValue.main}}" placeholder="0"/>
-                </div>
-                
-                <div class="combatResource">
-                    <span>DCV: </span>
-                    <input class="resourceValueInput" type="number" name="system.stats.defenceCombatValue.main" value="{{systemData.stats.defenceCombatValue.main}}" placeholder="0"/>
-                </div>
-            </div>
-			<div class="flexstats">
-				<div class="stats">
-					<div class="statblock">
-						<p class="attribute-top w-100 text-center mb-1">Body</p>
-						<input class="stat-value" name="system.body.main" type="text" value="{{systemData.body.main}}" placeholder="0"
-                        data-dtype="Number" />
-					</div>
-					<div class="statblock">
-						<p class="attribute-top w-100 text-center mb-1">Mind</p>
-						<input class="stat-value" name="system.mind.main" type="text" value="{{systemData.mind.main}}" placeholder="0"
-                        data-dtype="Number" />
-					</div>
-					<div class="statblock">
-						<p class="attribute-top w-100 text-center mb-1">Soul</p>
-						<input class="stat-value" name="system.soul.main" type="text" value="{{systemData.soul.main}}" placeholder="0"
-                        data-dtype="Number" />
-					</div>
-                    <div class="statblock">
-						<p class="attribute-top w-100 text-center mb-1">CharP</p>
-						<input class="stat-value" name="system.points.main" type="text" value="{{systemData.points.main}}" placeholder="0"
-                        data-dtype="Number" />
-					</div>
-                    <div class="statblock">
-						<p class="attribute-top w-100 text-center mb-1">SavedP</p>
-						<input class="stat-value" name="system.savedpoints.main" type="text" value="{{systemData.savedpoints.main}}" placeholder="0"
-                        data-dtype="Number" />
-					</div>
-				</div>
-				<div class="mainattributes">
-                    <div class="encapDiv">
-                        <header class="attributes-header flexrow">
-                            <h2 class="attribute-titel">Attributes</h2>
-                            <div class="header-attributes">
-                                <span class="span-small">Lvl</span>
-                                <span class="span-small">Cost</span>
-                                <span class="span-small">Flux</span>
-                                <span class="span-big">Attribute</span>
-                                <div class="item-controls">
-                                    <a class="item-control " data-action="createAttribute"><i class="fas fa-plus"></i></a>
-                                </div>
-                            </div>
-                        </header>
-                        <ol class="attributes-list">
-                                {{#each charAtrributes as |SimpleItem id|}}
-                                <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}">
-                                    <input class="item-small" type="text" name="SimpleItem.system.level.main" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
-                                    <input class="item-small" type="number" name="SimpleItem.system.cost.main" value="{{SimpleItem.system.cost.main}}" placeholder="0" disabled> </input>
-                                    <input class="item-small" type="number" name="SimpleItem.system.flux.main" value="{{SimpleItem.system.flux.main}}" placeholder="0" disabled></input>
-                                    <input class="item-big" name="SimpleItem.system.name" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
-                                    <div class="item-controls">
-                                        <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
-                                        <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </li>
-                                <div class="span-collabsible">
-                                    <span style="white-space: pre-line" name="SimpleItem.system.description">{{SimpleItem.system.description}}</span>
-                                </div>
-                                {{/each}}
-                        </ol>
-                    </div>
-                    
-                    <div class="encapDiv">
-                        <header class="attributes-header flexrow">
-                            <h2 class="attribute-titel">Defects</h2>
-                            
-                            <div class="header-attributes">
-                                <span class="span-small">Lvl</span>
-                                <span class="span-small">Cost</span>
-                                <span class="span-small">Flux</span>
-                                <span class="span-big">Attribute</span>
-                                <div class="item-controls">
-                                    <a class="item-control " data-action="createDefect"><i class="fas fa-plus"></i></a>
-                                </div>
-                            </div>
-                            
-                        </header>
-                        <ol class="attributes-list">
-                                {{#each charDefects as |SimpleItem id|}}
-                                    <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}">
-                                        <input class="item-small" type="number" name="{{SimpleItem.system.level.main}}" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
-                                        <input class="item-small" type="number" name="{{SimpleItem.system.cost.main}}" value="{{SimpleItem.system.cost.main}}" placeholder="0" disabled> </input>
-                                        <input class="item-small" type="number" name="{{SimpleItem.system.flux.main}}" value="{{SimpleItem.system.flux.main}}"  placeholder="0"disabled></input>
-                                        <input class="item-big" name="{{SimpleItem.system.name}}" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
-                                        <div class="item-controls">
-                                            <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
-                                            <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                    </li>
-                                    <div class="span-collabsible">
-                                        <span style="white-space: pre-line" name="SimpleItem.system.description">{{SimpleItem.system.description}}</textarea>
-                                    </div>
-                                {{/each}}
-                        </ol>
-                    </div>
-
-				</div>
-            </div>
-        </div>
-
-        {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="items">
-            <ol class="item-list">
-                {{#each gear as |item id|}}
-
-                <li class="item flexrow" data-item-id="{{item._id}}">
-                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
-                    <h4 class="item-name">{{item.name}}</h4>
-                    {{!-- Iterate through all attributes on the item and output buttons for any that are formula. --}}
-                    <div class="item-controls">
-                        <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
-                        <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
-                    </div>
-                </li>
-                {{/each}}
-            </ol>
-            <p>
-                <a class="item-control" title="{{ localize "SIMPLE.ItemCreate" }}" data-action="createItem"><i class="fas fa-plus"></i> {{ localize "SIMPLE.ItemCreate" }}</a>
-
-            </p>
-        </div>
-
-        {{!-- Biography Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
-            <div class="top-div">
-                <dive class="character-appearance">
-                    <span class="resourceSpan">Eyes:</span>
-                    <input class="valueInput" type="text" name="system.description.eyes.main" value="{{systemData.description.eyes.main}}" placeholder="eyes"/>
-                    
-                </dive>
-                <dive class="character-appearance">
-                    <span class="resourceSpan">Hair:</span>
-                    <input class="valueInput" type="text" name="system.description.hair.main" value="{{systemData.description.hair.main}}" placeholder="hair"/>
-                    
-                </dive>
-                <dive class="character-appearance">
-                    <span class="resourceSpan">Gender:</span>
-                    <input class="valueInput" type="text" name="system.description.gender.main" value="{{systemData.description.gender.main}}" placeholder="gender"/>
-                </dive>
-                <dive class="character-appearance">
-                    <span class="resourceSpan">Age:</span>
-                    <input class="valueInput" type="number" name="system.description.age.main" value="{{systemData.description.age.main}}" placeholder="0"/>
-                </dive>
-                <dive class="character-trait">
-                    <span class="resourceSpan">Ideals</span>
-                    <textarea class="valueInput" name="system.description.ideals.main">{{systemData.description.ideals.main}}</textarea>
-                </dive>
-                <dive class="character-trait">
-                    <span class="resourceSpan">Personality Traits</span>
-                    <textarea class="valueInput" name="system.description.traits.main">{{systemData.description.traits.main}}</textarea>
-                </dive>
-                <dive class="character-trait">
-                    <span class="resourceSpan">Goals</span>
-                    <textarea class="valueInput" name="system.description.goals.main">{{systemData.description.goals.main}}</textarea>
-                </dive>
-                <dive class="character-trait">
-                    <span class="resourceSpan">Appearance</span>
-                    <textarea class="valueInput" name="system.description.appearance.main">{{systemData.description.appearance.main}}</textarea>
-                </dive>
-                <dive class="character-trait">
-                    <span class="resourceSpan">Flaws</span>
-                    <textarea class="valueInput" name="system.description.flaws.main">{{systemData.description.flaws.main}}</textarea>
-                </dive>
-                <dive class="character-trait">
-                    <span class="resourceSpan">Connections</span>
-                    <textarea class="valueInput" name="system.description.connections.main">{{systemData.description.connections.main}}</textarea>
-                </dive>
-            </div>
-            <div class="bio-div">
-                <span class="resourceSpan">Biography</span>
-                {{editor enrichedBiography target="system.biography" button=true editable=editable }}
-            </div>
-        </div>  
-        
-        {{!-- Notes Tab --}}
-        <div class="tab notes" data-group="primary" data-tab="notes">
-            <div class="bio-spacing-flex">
-                <div class="bio-spacing-block">
-                    <div class="half-bio-div">
-                        <span class="resourceSpan">Points of interest</span>
-                        {{editor enrichedPointOI target="system.pointoi" button=true editable=editable}}
-                    </div>
-                    <div class="half-bio-div">
-                        <span class="resourceSpan">People of interest</span>
-                        {{editor enrichedPeopleOI target="system.peopleoi" button=true editable=editable}}
-                    </div>
-                </div>
-                <div class="bio-spacing-block">
-                    <div class="half-bio-div">
-                        <span class="resourceSpan">Notes</span>
-                        {{editor enrichedNotes target="system.notes" button=true editable=editable}}
-                    </div>  
-                </div>
-
-            </div>
-        </div>
-        
-    </div>
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-        
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "block";
-            }
-          });
-        }
-        </script>
-</form>
+</div>

@@ -1,43 +1,170 @@
 {
-    "id": "senandsins",
-    "title": "Sen and Sin",
-    "description": "A simple system for our pal",
-    "version": "0.6.4",
-    "compatibility": {
-      "minimum": "12",
-      "verified": "14",
-      "maximum": "16"
-    },
-    "authors": [
-      {
-        "name": "Chosho"
-      }
-    ],
-    "scripts": [
-    ],
-    "esmodules": [
-	      "module/simple.js"
-    ],
-    "styles": [
-	      "styles/simple.css"
-    ],
-    "packs": [
-    ],
-  "languages": [
-      {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
-      }
-    ],
-    "grid":
+  "id": "senandsins",
+  "title": "Sen and Sin",
+  "description": "A simple system for our pal",
+  "version": "0.6.8",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12",
+    "maximum": "16"
+  },
+  "authors": [
     {
-      "distance": 10,
-      "units": "m"
+      "name": "Chosho",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "module/simple.js"
+  ],
+  "styles": [
+    {
+      "src": "styles/simple.css"
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    }
+  ],
+  "grid": {
+    "distance": 10,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
+  "url": "https://github.com/GijsSa/SenAndSins",
+  "manifest": "https://raw.githubusercontent.com/GijsSa/SenAndSins/refs/heads/main/system.json",
+  "download": "https://github.com/GijsSa/SenAndSins/archive/refs/senandsins/senandsins.zip",
+  "flags": {},
+  "documentTypes":{
+    "Actor": {
+      "templates": {
+        "resources": {
+          "health": {
+            "value": 0,
+            "max": 0
+          },
+          "power": {
+            "value": 0,
+            "max": 0
+          }
+        }
+      },
+      "character": {
+        "height":{
+          "main": ""
+        },
+        "species":{
+          "main": ""
+        },
+        "mind":{
+          "main": 0
+        },
+        "body":{
+          "main": 0
+        },
+        "soul":{
+          "main": 0
+        },
+        "points":{
+          "main": 0
+        },
+        "savedpoints":{
+          "main": 0
+        },
+        "stats":{
+            "armourRating":{
+              "main": 0
+            },
+            "combatValue":{
+              "main":0
+            },
+            "attackCombatValue":{
+              "main":0
+            },
+            "defenceCombatValue":{
+              "main":0
+            }
+        },
+        "description":{
+            "eyes":{
+              "main": ""
+            },
+            "hair":{
+              "main": ""
+            },
+            "gender":{
+              "main": ""
+            },
+            "age":{
+              "main": 0
+            }, 
+            "ideals":{
+              "main": ""
+            },
+            "traits":{
+              "main": ""
+            },
+            "goals":{
+              "main": ""
+            },
+            "appearance":{
+              "main": ""
+            },
+            "flaws":{
+              "main": ""
+            },
+            "connections":{
+              "main": ""
+            }
+        },
+        "biography": "",
+        "peopleoi":"",
+        "pointoi":"",
+        "notes":"",
+        "settings":{
+            "additionalInit":{
+              "main":0
+            }
+        }
+      }
     },
-    "primaryTokenAttribute": "health",
-    "secondaryTokenAttribute": "power",
-    "url": "https://github.com/GijsSa/SenAndSins",
-    "manifest": "https://raw.githubusercontent.com/GijsSa/SenAndSins/refs/heads/main/system.json",
-    "download": "https://github.com/GijsSa/SenAndSins/archive/refs/senandsins/senandsins.zip"
-  }
+    "Item": {
+      "templates": {
+        "base": {
+          "rarity": "Common",
+          "price": 20
+        },
+        "attribute":{
+          "level":{
+            "main":0
+          },
+          "cost":{
+            "main":0
+          },
+          "flux":{
+            "main":0
+          }
+        }
+      },
+      "item": {
+        "templates": ["item"],
+        "description": "",
+        "quantity": 1,
+        "weight": 0
+      },
+      "attribute":{
+        "templates": ["attribute"],
+        "description": ""
+      },
+      "defect":{
+        "templates": ["attribute"],
+        "description": ""
+      }
+    }
+  } 
+}

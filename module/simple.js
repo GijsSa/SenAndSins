@@ -13,6 +13,9 @@ import { SimpleActorSettingsSheet } from "./actor-settings-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createsenandsinsMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
+const {Actors, Items} = foundry.documents.collections;
+const {ActorSheetV2} = foundry.applications.sheets;
+
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -46,7 +49,7 @@ Hooks.once("init", async function() {
   CONFIG.Token.objectClass = SimpleToken;
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
+  Actors.unregisterSheet("core", ActorSheetV2);
   Actors.registerSheet("senandsins", SimpleActorSheet, { makeDefault: true });
   Actors.registerSheet("senandsins", SimpleActorSettingsSheet, { makeDefault: false });
   Actors.registerSheet("senandsins", SimpleActorRollSheet, { makeDefault: false });
@@ -69,7 +72,7 @@ Hooks.once("init", async function() {
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
     type: String,
-    default: "2d6+@stats.attackCombatValue.main+@settings.additionalInit.main",
+    default: "2d6+@stats.attackCombatValue.main",
     config: true,
     onChange: formula => _simpleUpdateInit(formula, true)
   });

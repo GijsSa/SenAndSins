@@ -31,7 +31,6 @@
 }
 
 .senandsins .window-content {
-  background: transparent;
   height: 100%;
   padding: 5px;
   overflow-y: auto;
@@ -41,9 +40,9 @@
 .senandsins .form {
   height: 100%;
 }
+
 .senandsins .sheet-header {
   flex: 0 0 100px;
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -114,7 +113,6 @@
   width: 50%;
   margin-top: 10px;
   float: left;
-  display: flex;
 }
 
 .senandsins .item-resource .resourceSpan {
@@ -246,6 +244,10 @@
   background: var(--lightest);
 }
 
+.senandsins .tab{
+
+}
+
 .senandsins .tabs {
   height: 30px;
   flex: 0 0 0px;
@@ -263,7 +265,7 @@
   border-left: 1px solid black;
   text-align: center;
   height: 85%;
-  line-height: 10px;
+  line-height: 27px;
 }
 
 .senandsins .tabs .itemsright {

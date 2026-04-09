@@ -1,0 +1,25 @@
+{{!-- Notes Tab --}}
+
+<section class="tab notes {{tabs.notes.cssClass}}"
+        data-tab="notes"
+        data-group="primary">
+        <div class="bio-spacing-flex">
+            <div class="bio-spacing-block">
+                <div class="half-bio-div">
+                    <span class="resourceSpan">Points of interest</span>
+                    {{editor enrichedPointOI target="system.pointoi" button=true editable=editable}}
+                </div>
+                <div class="half-bio-div">
+                    <span class="resourceSpan">People of interest</span>
+                    {{editor enrichedPeopleOI target="system.peopleoi" button=true editable=editable}}
+                </div>
+            </div>
+            <div class="bio-spacing-block">
+                <div class="half-bio-div">
+                    <span class="resourceSpan">Notes</span>
+                    {{editor enrichedNotes target="system.notes" button=true editable=editable}}
+                </div>  
+            </div>
+
+        </div>
+</section>

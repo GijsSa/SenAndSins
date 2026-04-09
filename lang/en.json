@@ -31,7 +31,11 @@
   "SIMPLE.UnsetTemplate": "Unset Template",
   "SIMPLE.NoTemplate": "No Template",
   "SIMPLE.Character": "Character",
+  "SIMPLE.General": "General",
   "SIMPLE.ItemTemplate": "Item",
+  "SIMPLE.Items": "Items",
+  "SIMPLE.Description": "Description",
+  "SIMPLE.Notes": "Notes",
   "SIMPLE.AttributeTemplate": "Attribute",
   "SIMPLE.DefectTemplate": "Defect",
 
