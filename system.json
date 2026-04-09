@@ -2,7 +2,7 @@
     "id": "senandsins",
     "title": "Sen and Sin",
     "description": "A simple system for our pal",
-    "version": "0.6.0",
+    "version": "0.6.4",
     "compatibility": {
       "minimum": "12",
       "verified": "12",
