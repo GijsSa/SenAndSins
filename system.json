@@ -37,5 +37,7 @@
     },
     "primaryTokenAttribute": "health",
     "secondaryTokenAttribute": "power",
-    "url": "https://github.com/GijsSa/SenAndSins"
+    "url": "https://github.com/GijsSa/SenAndSins",
+    "manifest": "https://raw.githubusercontent.com/GijsSa/SenAndSins/refs/heads/main/system.json",
+    "download": "https://github.com/GijsSa/SenAndSins/archive/refs/senandsins/senandsins.zip"
   }
