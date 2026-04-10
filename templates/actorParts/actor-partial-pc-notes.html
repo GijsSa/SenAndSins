@@ -1,0 +1,58 @@
+{{!-- Notes Tab --}}
+
+<section class="tab notes  {{tab.cssClass}}"
+        data-tab="notes"
+        data-group="primary">
+        <div class="bio-spacing-flex">
+            <div class="bio-spacing-block">
+                <div class="half-bio-div">
+                    <span class="resourceSpan">Points of interest</span>
+                    {{#if editable}}
+                     <prose-mirror
+                        name="system.pointoi"
+                        button="true"
+                        editable="{{editable}}"
+                        toggled="false"
+                        value="{{system.pointoi}}">
+                        {{{enrichedPointOI}}}
+                    </prose-mirror>
+                    {{else}}
+                        {{{enrichedPointOI}}}
+                    {{/if}}
+                </div>
+                <div class="half-bio-div">
+                    <span class="resourceSpan">People of interest</span>
+                    {{#if editable}}
+                    <prose-mirror
+                        name="system.peopleoi"
+                        button="true"
+                        editable="{{editable}}"
+                        toggled="false"
+                        value="{{system.peopleoi}}">
+                        {{{enrichedPeopleOI}}}
+                    </prose-mirror>
+                    {{else}}
+                        {{{enrichedPeopleOI}}}
+                    {{/if}}
+                </div>
+            </div>
+            <div class="bio-spacing-block">
+                <div class="half-bio-div">
+                    <span class="resourceSpan">Notes</span>
+                    {{#if editable}}
+                    <prose-mirror
+                        name="system.notes"
+                        button="true"
+                        editable="{{editable}}"
+                        toggled="false"
+                        value="{{system.notes}}">
+                        {{{enrichedNotes}}}
+                    </prose-mirror>
+                    {{else}}
+                        {{{enrichedNotes}}}
+                    {{/if}}
+                </div>  
+            </div>
+
+        </div>
+</section>

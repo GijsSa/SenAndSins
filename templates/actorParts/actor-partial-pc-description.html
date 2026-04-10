@@ -1,4 +1,4 @@
-<section class="tab description {{tabs.description.cssClass}}"
+<section class="tab description {{tab.cssClass}}"
         data-tab="description"
         data-group="primary">
 
@@ -48,7 +48,18 @@
             </div>
             <div class="bio-div">
                 <span class="resourceSpan">Biography</span>
-                {{editor enrichedBiography target="system.biography" button=true editable=editable }}
+                {{#if editable}}
+                <prose-mirror
+                    name="system.biography"
+                    button="true"
+                    editable="{{editable}}"
+                    toggled="false"
+                    value="{{system.biography}}">
+                    {{{enrichedBiography}}}
+                </prose-mirror>
+                {{else}}
+                    {{{enrichedBiography}}}
+                {{/if}}
             </div>
         </section>
         

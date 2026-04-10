@@ -1,5 +1,6 @@
 import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
+const { TextEditor } = foundry.applications.ux;
 
 /**
  * Extend the basic ItemSheet with some very simple modifications

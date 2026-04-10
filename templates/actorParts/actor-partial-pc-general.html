@@ -1,9 +1,8 @@
 
 
-<section class="tab general {{tabs.general.cssClass}}"
+<section class="tab general {{tab.cssClass}}"
         data-tab="general"
         data-group="primary">
-    {{!-- Tab content here --}}
         <div class="armorcombat grid grid-4col">
             <div class="combatResource">
                 <span>AR: </span>
@@ -75,8 +74,8 @@
                                 <input class="item-small" type="number" name="SimpleItem.system.flux.main" value="{{SimpleItem.system.flux.main}}" placeholder="0" disabled></input>
                                 <input class="item-big" name="SimpleItem.system.name" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
                                 <div class="item-controls">
-                                    <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
-                                    <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
+                                    <a name="{{SimpleItem._id}}" class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
+                                    <a name="{{SimpleItem._id}}" class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
                                 </div>
                             </li>
                             <div class="span-collabsible">
@@ -109,8 +108,8 @@
                                     <input class="item-small" type="number" name="{{SimpleItem.system.flux.main}}" value="{{SimpleItem.system.flux.main}}"  placeholder="0"disabled></input>
                                     <input class="item-big" name="{{SimpleItem.system.name}}" value="{{SimpleItem.name}}" placeholder="name" disabled></input>
                                     <div class="item-controls">
-                                        <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
-                                        <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
+                                        <a name="{{SimpleItem._id}}" class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
+                                        <a name="{{SimpleItem._id}}" class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </li>
                                 <div class="span-collabsible">

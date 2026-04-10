@@ -27,10 +27,18 @@
 }
 .senandsins .window-header {
   background: var(--darkest); 
+}
+
+.senandsins .window-header .window-title{
+  color: black;
+}
+
+.senandsins .window-header .header-control{
   color: black;
 }
 
 .senandsins .window-content {
+  background: var(--middle);
   height: 100%;
   padding: 5px;
   overflow-y: auto;
@@ -42,7 +50,7 @@
 }
 
 .senandsins .sheet-header {
-  flex: 0 0 100px;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -50,7 +58,6 @@
   position: absolute;
   padding-bottom: 5px;
   padding-top: 5px;
-  margin-top: -5px;
   margin-left: -5px;
   background: var(--middle);
   padding-left: 5px;
@@ -59,14 +66,13 @@
 }
 
 .senandsins .sheet-header .profile-img {
-  flex: 0 0 100px;
-  height: 100px;
+  height: 90px;
   margin-right: 10px;
 }
 
 .senandsins .sheet-header .header-fields {
   flex: 1;
-  height: 100px;
+  height: 85px;
 }
 
 .senandsins .sheet-header h2.charname {
@@ -145,6 +151,7 @@
 }
 
 .senandsins .bio-div{
+  margin-top: 50px;
   width: 100%;
 }
 
@@ -193,7 +200,8 @@
 .senandsins .character-appearance .resourceSpan {
   font-size: small;
   margin-right: 5px;
-  width: 25%;
+  width: 25%;  
+  margin-top: 10px;
 }
 
 .senandsins .character-appearance .valueInput {        
@@ -234,7 +242,7 @@
 
 .senandsins .combatResource .resourceValueInput {
   width: 32px;
-  height: 15px;
+  height: 15px; 
   background: var(--lightest);
 }
 
@@ -245,7 +253,8 @@
 }
 
 .senandsins .tab{
-
+  pointer-events: all;
+  margin-top: 136px;
 }
 
 .senandsins .tabs {
@@ -259,34 +268,7 @@
   width: 25%;
 }
 
-.senandsins .tabs .itemsleft {
-  width: 25%;
-  font-weight: bold;
-  border-left: 1px solid black;
-  text-align: center;
-  height: 85%;
-  line-height: 27px;
-}
-
-.senandsins .tabs .itemsright {
-  width: 25%;
-  font-weight: bold;
-  border-right: 1px solid black;
-  text-align: center;
-  height: 85%;
-  line-height: 10px;
-}
-
-.senandsins .tabs .item.active {
-  text-decoration: underline;
-  text-shadow: none;
-}
-
-.senandsins .tabs .items.active {
-  text-decoration: underline;
-  text-shadow: none;
-}
-.senandsins .tabs .itemsleft.active {
+.senandsins .tabs .active {
   text-decoration: underline;
   text-shadow: none;
 }
@@ -327,8 +309,8 @@
 }
 .senandsins .editor,
 .senandsins .editor-content {
-  height: 100%;
-  min-height: 50px;
+  min-height: 249px;
+  overflow: auto;
 }
 
 .senandsins .armorcombat{
@@ -424,6 +406,7 @@
 }
 .senandsins .item-list .item-controls {
   flex: 0 0 36px;
+  display: flex;
 }
 .senandsins .item-list .item-buttons {
   display: flex;
@@ -439,7 +422,7 @@
   flex: none;
   width: auto;
 }
-.senandsins .attributes {
+.senandsins .general {
   position: relative;
 }
 
