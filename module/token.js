@@ -1,3 +1,5 @@
+const {Token} = foundry.canvas.placeables;
+
 /**
  * Extend the base TokenDocument to support resource type attributes.
  * @extends {TokenDocument}

@@ -15,6 +15,7 @@ import { createsenandsinsMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 const {Actors, Items} = foundry.documents.collections;
 const {ActorSheetV2} = foundry.applications.sheets;
+const {ItemSheetV2} = foundry.applications.sheets;
 
 
 /* -------------------------------------------- */
@@ -53,7 +54,7 @@ Hooks.once("init", async function() {
   Actors.registerSheet("senandsins", SimpleActorSheet, { makeDefault: true });
   Actors.registerSheet("senandsins", SimpleActorSettingsSheet, { makeDefault: false });
   Actors.registerSheet("senandsins", SimpleActorRollSheet, { makeDefault: false });
-  Items.unregisterSheet("core", ItemSheet);
+  Items.unregisterSheet("core", ItemSheetV2);
   Items.registerSheet("senandsins", SimpleItemSheet, { makeDefault: true });
 
   // Register system settings

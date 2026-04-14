@@ -1,80 +1,153 @@
-import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
+const { HandlebarsApplicationMixin } = foundry.applications.api;
+const { ItemSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
 
-/**
- * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
- */
-export class SimpleItemSheet extends ItemSheet {
+export class SimpleItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
-  /** @inheritdoc */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["senandsins", "sheet", "item"],
-      width: 520,
-      height: 480,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      scrollY: [".attributes"],
-    });
+    static DEFAULT_OPTIONS = {
+      classes: ["senandsins", "sheet", "item", 'themed', 'theme-light'],
+      position: {
+        width: 520,
+        height: 480,
+      },
+      window: {
+        resizable: true,
+        title: 'SIMPLE.Items'
+      },
+      tag: 'form',
+      form: {
+        handler: SimpleItemSheet.onSubmitForm,
+        submitOnChange: true,
+        closeOnSubmit: false
+      },
+      actions:
+      {
+        editImage: this.onEditImage
+      }
+  }
+  
+  static TABS = {
+    item: {
+        tabs: [
+          { id: 'itemDescription', label: 'SIMPLE.Description' },
+          { id: 'itemDetails', label: 'SIMPLE.Details' }
+        ],
+        initial: 'itemDescription' 
+      },
+    attribute: {
+      tabs: [
+        { id: 'attributeDescription', label: 'SIMPLE.Description' },
+        { id: 'attributeDetails', label: 'SIMPLE.Details' }
+      ],
+      initial: 'attributeDescription' 
+    },
+    defect: {
+      tabs: [
+        { id: 'defectDescription', label: 'SIMPLE.Description' },
+        { id: 'defectDetails', label: 'SIMPLE.Details' }
+      ],
+      initial: 'defectDescription' 
+    }
   }
 
-  /* -------------------------------------------- */
+  /** @inheritdoc */
+  static PARTS = {
+    header: {
+        template: "systems/senandsins/SnS/items/item-sheet.html",
+    },
+    tabs: {
+      template: 'templates/generic/tab-navigation.hbs',
+    },
+    itemDescription: {
+      template: `systems/senandsins/templates/itemParts/item-partial-pc-description.html`
+    },
+    itemDetails: {
+      template: `systems/senandsins/templates/itemParts/item-partial-pc-details.html`
+    },
+    defectDescription: {
+      template: `systems/senandsins/templates/itemParts/defect-partial-pc-description.html`
+    },
+    defectDetails: {
+      template: `systems/senandsins/templates/itemParts/defect-partial-pc-details.html`
+    },
+    attributeDescription: {
+      template: `systems/senandsins/templates/itemParts/attribute-partial-pc-description.html`
+    },
+    attributeDetails: {
+      template: `systems/senandsins/templates/itemParts/attribute-partial-pc-details.html`
+    }
+  }
+  
+
+  get title() {
+    return `${this.options.document.name}`;
+  }
+
+  get label()
+  {
+    return `${game.i18n.localize(this.options.window.title)}`;
+  }  
+
+  get document() {
+    return this.options.document  // Document comes from options
+  }
+
+  _configureRenderOptions(options) {
+    // This fills in `options.parts` with an array of ALL part keys by default
+    // So we need to call `super` first
+    super._configureRenderOptions(options);
+    // Completely overriding the parts
+    options.parts = ['header', 'tabs']
+    // Don't show the other tabs if only limited view
+    if (this.document.limited) return;
+    // Keep in mind that the order of `parts` *does* matter
+    // So you may need to use array manipulation
+    options.parts.push(`${this.document.type}Description`);
+    options.parts.push(`${this.document.type}Details`);
+  }
+  
+  static async onEditImage(event, target) {
+    const field = target.dataset.field || "img"
+    const current = foundry.utils.getProperty(this.document, field)
+
+    const fp = new foundry.applications.apps.FilePicker({
+      type: "image",
+      current: current,
+      callback: (path) => this.document.update({ [field]: path })
+    })
+
+    fp.render(true)
+  }
+
 
   /** @inheritdoc */
-  async getData(options) {
-    const context = super.getData(options);
-    EntitySheetHelper.getAttributeData(context.data);
-    context.systemData = context.data.system;
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options)
+    context.tabs = this._prepareTabs(`${this.item.type}`)
+    context.system = this.item.system;
+    context.flags = this.item.flags;  
     context.dtypes = ATTRIBUTE_TYPES;
-    context.enrichedBiography = await TextEditor.enrichHTML(this.object.system.description);
+    context.enrichedDescription = await TextEditor.enrichHTML(this.document.system.description,
+      {
+        secrets: this.document.isOwner,
+        relativeTo: this.document
+      }
+    );
     return context;
   }
 
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-	activateListeners(html) {
-    super.activateListeners(html);
-
-    // Everything below here is only needed if the sheet is editable
-    if ( !this.isEditable ) return;
-
-    // Attribute Management
-    html.find(".attributes").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
-    html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
-    html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAttributeRoll.bind(this));
-
-    // Add draggable for Macro creation
-    html.find(".attributes a.attribute-roll").each((i, a) => {
-      a.setAttribute("draggable", true);
-      a.addEventListener("dragstart", ev => {
-        let dragData = ev.currentTarget.dataset;
-        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-      }, false);
-    });
+  static async onSubmitForm(event, form, formData) {
+    event.preventDefault()
+    await this.document.update(formData.object) // Note: formData.object
   }
 
-  get template(){
-    
-    const path = 'systems/senandsins/SnS/items';
-    // Return a single sheet for all item types.
-    // return `${path}/item-sheet.hbs`;
-  
-    // Alternatively, you could use the following return statement to do a
-    // unique item sheet by type, like `weapon-sheet.hbs`.
-    switch(this.item.type){
-      case "item":
-        {
-          return `${path}/${this.item.type}-sheet.html`;
-        }
-        case "defect":
-        case "attribute":
-        {
-          return `${path}/attribute-sheet.html`;
-        }
-    }
+  async _preparePartContext(partId, context) {
 
-    return `${path}/${this.item.type}-sheet.html`;
+    if(partId.includes(`${this.document.type}`))
+    {
+      context.tab = context.tabs[partId];
+    }
+    return context;
   }
 }

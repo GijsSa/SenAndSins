@@ -75,6 +75,11 @@
   height: 85px;
 }
 
+.senandsins .sheet-header .header-item-fields {
+  margin-top: -45px;
+
+}
+
 .senandsins .sheet-header h2.charname {
   height: 130px;
   margin: 5px 0;
@@ -95,6 +100,14 @@
   font-size: 30px;
   background: var(--lightest);
 }
+
+.senandsins .sheet-header .nameInput{
+  font-weight: bold;
+  font-size: 30px;
+  background: var(--lightest);
+}
+
+
 .senandsins .resource {
   width: 40%;
   margin-top: 10px;
@@ -119,12 +132,14 @@
   width: 50%;
   margin-top: 10px;
   float: left;
+  display: flex;
 }
 
 .senandsins .item-resource .resourceSpan {
   font-size: medium;
   width: 25%;
   margin-right: 5px;
+  margin-top: 5px;
 }
 
 .senandsins .item-resource .valueInput {    

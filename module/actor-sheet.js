@@ -1,10 +1,10 @@
-import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
 import { SimpleActorSettingsSheet } from "./actor-settings-sheet.js";
 import { SimpleActorRollSheet } from "./actor-roll-sheet.js";
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
+const { Items } = foundry.documents.collections;
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -227,7 +227,7 @@ export class SimpleActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
   static _onEdit(event, button)
   {
-    const item = this.actor.items.get(button.name);       
+    const item = this.actor.items.get(button.name);   
     return item.sheet.render(true);
   }
 
@@ -261,6 +261,5 @@ export class SimpleActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
     let rollSheet = new SimpleActorRollSheet(this.actor);
     rollSheet?.render(true);
-
   }
 }

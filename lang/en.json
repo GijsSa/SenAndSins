@@ -38,6 +38,7 @@
   "SIMPLE.Notes": "Notes",
   "SIMPLE.AttributeTemplate": "Attribute",
   "SIMPLE.DefectTemplate": "Defect",
+  "SIMPLE.Details": "Details",
 
   "SIMPLE.AttributeKey": "Attribute Key",
   "SIMPLE.AttributeValue": "Value",
