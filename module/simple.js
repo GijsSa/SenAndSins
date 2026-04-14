@@ -14,8 +14,7 @@ import { preloadHandlebarsTemplates } from "./templates.js";
 import { createsenandsinsMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 const {Actors, Items} = foundry.documents.collections;
-const {ActorSheetV2} = foundry.applications.sheets;
-const {ItemSheetV2} = foundry.applications.sheets;
+const {ActorSheetV2, ItemSheetV2} = foundry.applications.sheets;
 
 
 /* -------------------------------------------- */

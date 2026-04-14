@@ -1,21 +1,28 @@
 import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
+const { HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {DocumentSheet}
  */
 export class SimpleActorSettingsSheet extends DocumentSheet {
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-          classes: ["senandsins", "actor-type"],
-          template: "systems/senandsins/SnS/Actor extras/actor-settings-sheet.html",
-          width: 250,
-          height: 400,
-          tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
-          dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
-        });
-      }
+   static DEFAULT_OPTIONS = {
+    classes: ["senandsins", "sheet", "actortype", 'themed', 'theme-light'],
+    position: {
+      width: 240,
+      height: 400
+    },
+    window: {
+      resizable: true,
+      title: 'SIMPLE.Character'
+    },
+    tag: 'form',
+    form: {
+      submitOnChange: false,
+      closeOnSubmit: false
+    }
+  }
 
       activateListeners(html) {
         super.activateListeners(html);

@@ -1,14 +1,14 @@
-<form class="flexcol {{cssClass}}" autocomplete="off">
+<div class="flexcol {{cssClass}}" autocomplete="off">
     {{!-- Sheet Body --}}
     <section class="sheet-settings-body">
         <div class="roll-body-wrap">
             <div class="top-roll-div">
-                <span class="roll-resource">Roll bonus:</span>
+                <span class="roll-resource field">Roll bonus:</span>
                 <input class="rollInput" type="number" name="rollBonus" placeholder="0"/>
             </div>
             <div class="top-roll-div">
-                <span class="roll-resource">Roll attribute:</span>
-                <select class="roll-resource" name="rollStats">
+                <span class="roll-resource field">Roll attribute:</span>
+                <select class="roll-resource input" name="rollStats">
                     <option value="NS">None selected</option>
                     <option value="Body">Body</option>
                     <option value="Mind">Mind</option>
@@ -19,11 +19,11 @@
             </div>
         </div>
         <div class="sen-button-roll-div">
-            <button class="sen-button roll-button" data-roll="4d6kl2">--</button> 
-            <button class="sen-button roll-button" data-roll="3d6kl2">-</button> 
-            <button class="sen-button roll-button" data-roll="2d6">0</button> 
-            <button class="sen-button roll-button" data-roll="3d6k2">+</button> 
-            <button class="sen-button roll-button" data-roll="4d6k2">++</button> 
+            <button data-action="rollControl" class="sen-button roll-button" data-roll="4d6kl2">--</button> 
+            <button data-action="rollControl" class="sen-button roll-button" data-roll="3d6kl2">-</button> 
+            <button data-action="rollControl" class="sen-button roll-button" data-roll="2d6">0</button> 
+            <button data-action="rollControl" class="sen-button roll-button" data-roll="3d6k2">+</button> 
+            <button data-action="rollControl" class="sen-button roll-button" data-roll="4d6k2">++</button> 
         </div>  
     </section>
-</form>
+</div>

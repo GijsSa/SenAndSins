@@ -36,6 +36,9 @@
 .senandsins .window-header .header-control{
   color: black;
 }
+.senandsins .window-header .header-button{
+  color: black;
+}
 
 .senandsins .window-content {
   background: var(--middle);
@@ -415,6 +418,7 @@
 }
 .senandsins .settings-control {
   margin-left: -1px;
+  display: none;
 }
 .senandsins .roll-control {    
   margin-top: 10px;
@@ -623,6 +627,7 @@
   margin-left: -5px;
   background: var(--darkest);
 }
+
 .senandsins .collapsible {
 }
 
@@ -639,7 +644,7 @@
   width: 30%;
 }
 .senandsins .sen-button-roll-div{
-  display: flow;
+  display: ruby-text;
   margin-left: 13px;
 }
 .senandsins .sen-button{
@@ -653,7 +658,14 @@
     width: 18%;
 }
 
-.senandsins .roll-resource{
+.senandsins .roll-resource.field{
+  min-width: 25%;
+  margin-top: 15px;
+  max-width: 50%;
+}
+
+.senandsins .roll-resource.input{
   min-width: 25%;
   margin-top: 10px;
+  max-width: 50%;
 }

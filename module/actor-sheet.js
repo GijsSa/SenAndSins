@@ -4,7 +4,6 @@ import { SimpleActorRollSheet } from "./actor-roll-sheet.js";
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
-const { Items } = foundry.documents.collections;
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -252,14 +251,14 @@ export class SimpleActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static _onSettingsControl(event){
     event.preventDefault();
 
-    let settingSheet = new SimpleActorSettingsSheet(this.actor);
+    let settingSheet = new SimpleActorSettingsSheet(this.options);
     settingSheet?.render(true);
   }
 
   static _onRollControl(event){
     event.preventDefault();
 
-    let rollSheet = new SimpleActorRollSheet(this.actor);
+    let rollSheet = new SimpleActorRollSheet({document: this.options.document});
     rollSheet?.render(true);
   }
 }
