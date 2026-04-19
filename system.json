@@ -38,7 +38,7 @@
   "secondaryTokenAttribute": "power",
   "url": "https://github.com/GijsSa/SenAndSins",
   "manifest": "https://raw.githubusercontent.com/GijsSa/SenAndSins/refs/heads/main/system.json",
-  "download": "https://github.com/GijsSa/SenAndSins/archive/refs/0.7.0.zip",
+  "download": "https://github.com/GijsSa/SenAndSins/archive/refs/0.7.1.zip",
   "flags": {},
   "documentTypes":{
     "Actor": {

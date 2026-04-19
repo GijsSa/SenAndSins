@@ -3,7 +3,7 @@ import { SimpleActorSettingsSheet } from "./actor-settings-sheet.js";
 import { SimpleActorRollSheet } from "./actor-roll-sheet.js";
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
-const { TextEditor } = foundry.applications.ux;
+const { TextEditor  } = foundry.applications.ux;
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -36,7 +36,8 @@ export class SimpleActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       delete: this._onDelete,
       settingsControl: this._onSettingsControl,
       rollControl: this._onRollControl,
-      editImage: this.onEditImage
+      editImage: this.onEditImage,
+      collapsible: this.setCollapse
     }
   }
 
@@ -120,13 +121,15 @@ export class SimpleActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     return this.options.document  // Document comes from options
   }
 
-  _prepareItems(context){
+  async _prepareItems(context){
     const gear = [];
     const attributes = [];
     const defects = [];
 
     for (let i of context.document.items) {
+
       i.img = i.img || DEFAULT_TOKEN;
+      i.system.enrichedDescript = await TextEditor.enrichHTML(i.system.description);
       // Append to gear.
       if (i.type === 'item') {
         gear.push(i);
@@ -163,7 +166,7 @@ export class SimpleActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   /** @inheritdoc */
   async _prepareContext(options) {
     const context = await super._prepareContext(options)
-    this._prepareItems(context);
+    await this._prepareItems(context);
     context.tabs = this._prepareTabs("primary")
     context.system = this.actor.system
     context.flags = this.actor.flags  
@@ -260,5 +263,16 @@ export class SimpleActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
     let rollSheet = new SimpleActorRollSheet({document: this.options.document});
     rollSheet?.render(true);
+  }
+
+  static setCollapse(event, button)
+  {
+    event.preventDefault();
+    var content = button.nextElementSibling;
+    if (content.style.display === "block") {
+        content.style.display = "none";
+    } else {
+        content.style.display = "block";
+    }
   }
 }

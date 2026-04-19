@@ -8,6 +8,7 @@ export class SimpleItem extends Item {
     super.prepareDerivedData();
     this.system.groups = this.system.groups || {};
     this.system.attributes = this.system.attributes || {};
+    this.system.enrichedDescript = this.system.enrichedDescript || "";
     EntitySheetHelper.clampResourceValues(this.system.attributes);
   }
 
