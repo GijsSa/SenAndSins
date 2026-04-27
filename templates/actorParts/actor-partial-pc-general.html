@@ -68,7 +68,7 @@
                     </header>
                     <ol class="attributes-list">
                             {{#each charAtrributes as |SimpleItem id|}}
-                            <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}">
+                            <li class="item flexrow collapsible" data-item-id="{{SimpleItem._id}}" data-action="collapsible">
                                 <input class="item-small" type="text" name="SimpleItem.system.level.main" value="{{SimpleItem.system.level.main}}" placeholder="0" disabled></input>
                                 <input class="item-small" type="number" name="SimpleItem.system.cost.main" value="{{SimpleItem.system.cost.main}}" placeholder="0" disabled> </input>
                                 <input class="item-small" type="number" name="SimpleItem.system.flux.main" value="{{SimpleItem.system.flux.main}}" placeholder="0" disabled></input>
@@ -78,9 +78,20 @@
                                     <a name="{{SimpleItem._id}}" class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
                                 </div>
                             </li>
-                            <div class="span-collabsible">
-                                <span style="white-space: pre-line" name="SimpleItem.system.description">{{SimpleItem.system.description}}</span>
-                            </div>
+                                <div class="span-collabsible">
+                                    {{#if editable}}
+                                    <prose-mirror
+                                        name="SimpleItem.system.description"
+                                        button="true"
+                                        editable="false"
+                                        toggled="false"
+                                        value="{{SimpleItem.system.description}}">
+                                        {{{SimpleItem.system.enrichedDescript}}}
+                                    </prose-mirror>
+                                    {{else}}
+                                        {{{SimpleItem.system.enrichedDescript}}}
+                                    {{/if}}
+                                </div>
                             {{/each}}
                     </ol>
                 </div>
